@@ -38,7 +38,7 @@
   </a-form>
 </template>
 
-<script>
+<script lang="ts">
 import pick from 'lodash.pick'
 
 const fields = ['title', 'startAt', 'owner', 'description']

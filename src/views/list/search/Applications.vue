@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-card :bordered="false" class="ant-pro-components-tag-select">
-      <a-form :form="form" >
+      <a-form :form="formRef" >
         <standard-form-row title="所属类目" block style="padding-bottom: 11px;">
           <a-form-item>
             <tag-select v-model:value="formRef.category">

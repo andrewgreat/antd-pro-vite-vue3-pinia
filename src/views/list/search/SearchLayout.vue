@@ -2,7 +2,7 @@
   <page-container
     :tab-list="tabList"
     :tab-active-key="tabActiveKey"
-    :tab-change="handleTabChange"
+    :on-tab-change="handleTabChange"
   >
     <template #content>
       <div class="ant-pro-page-header-search">
@@ -31,8 +31,8 @@ export default defineComponent({
       { key: '2', tab: '项目' },
       { key: '3', tab: '应用' }
     ])
-    const tabActiveKey= ref('2')
-    const search = ref(true)
+    const tabActiveKey= ref<string>('2')
+    const search = ref<boolean>(true)
     const getActiveKey = (path) => {
       switch (path) {
         case '/list/search/article':
@@ -42,7 +42,7 @@ export default defineComponent({
         case '/list/search/application':
           return '3'
         default:
-          return '1'
+          return '2'
       }
     }
     //created
@@ -50,6 +50,8 @@ export default defineComponent({
     watch(route, (val) => {
       tabActiveKey.value = getActiveKey(val.path)
     })
+
+    console.log('tabActiveKey...',tabActiveKey)
 
     function handleTabChange (key) {
       console.log('handleTabChange...',key)
