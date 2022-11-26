@@ -1,5 +1,5 @@
 <template>
-  <a-form @submit="handleSubmit" :form="form" class="form">
+  <a-form @submit="handleSubmit" :form="formRef" class="form">
     <a-row class="form-row" :gutter="16">
       <a-col :lg="6" :md="12" :sm="24">
         <a-form-item

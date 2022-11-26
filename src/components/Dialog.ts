@@ -1,113 +1,108 @@
-import { Modal } from 'ant-design-vue'
+import { createApp, getCurrentInstance, onMounted, ref, h } from "vue";
+import { Modal } from "ant-design-vue";
+
 export default (Vue) => {
-  function dialog (component, componentProps, modalProps) {
-    const _vm = this
-    modalProps = modalProps || {}
-    if (!_vm || !_vm._isVue) {
-      return
-    }
-    let dialogDiv = document.querySelector('body>div[type=dialog]')
+  function dialog(
+    component: any,
+    componentProps: { model: any },
+    modalProps: { model?: any }
+  ) {
+    modalProps = modalProps || {};
+
+    let dialogDiv = document.querySelector("body>div[type=dialog]");
     if (!dialogDiv) {
-      dialogDiv = document.createElement('div')
-      dialogDiv.setAttribute('type', 'dialog')
-      document.body.appendChild(dialogDiv)
+      dialogDiv = document.createElement("div");
+      dialogDiv.setAttribute("type", "dialog");
+      document.body.appendChild(dialogDiv);
     }
 
     const handle = function (checkFunction, afterHandel) {
       if (checkFunction instanceof Function) {
-        const res = checkFunction()
+        const res = checkFunction();
         if (res instanceof Promise) {
-          res.then(c => {
-            c && afterHandel()
-          })
+          res.then((c) => {
+            c && afterHandel();
+          });
         } else {
-          res && afterHandel()
+          res && afterHandel();
         }
       } else {
         // checkFunction && afterHandel()
-        checkFunction || afterHandel()
+        checkFunction || afterHandel();
       }
-    }
+    };
 
-    const dialogInstance = new Vue({
-      data () {
-        return {
-          visible: true
-        }
+    const dialogInstance = createApp({
+      name: "dialog",
+      components: {
+        component,
       },
-      router: _vm.$router,
-      store: _vm.$store,
-      mounted () {
-        this.$on('close', (v) => {
-          this.handleClose()
-        })
-      },
-      methods: {
-        handleClose () {
-          handle(this.$refs._component.onCancel, () => {
-            this.visible = false
-            this.$refs._component.$emit('close')
-            this.$refs._component.$emit('cancel')
-            dialogInstance.$destroy()
-          })
-        },
-        handleOk () {
-          handle(this.$refs._component.onOK || this.$refs._component.onOk, () => {
-            this.visible = false
-            this.$refs._component.$emit('close')
-            this.$refs._component.$emit('ok')
-            dialogInstance.$destroy()
-          })
-        }
-      },
-      render: function (h) {
-        const that = this
-        const modalModel = modalProps && modalProps.model
-        if (modalModel) {
-          delete modalProps.model
-        }
-        const ModalProps = Object.assign({}, modalModel && { model: modalModel } || {}, {
-          attrs: Object.assign({}, {
-            ...(modalProps.attrs || modalProps)
-          }, {
-            visible: this.visible
-          }),
-          on: Object.assign({}, {
-            ...(modalProps.on || modalProps)
-          }, {
-            ok: () => {
-              that.handleOk()
-            },
-            cancel: () => {
-              that.handleClose()
+      setup(props, { emit }) {
+        const instance = getCurrentInstance();
+        const proxy = instance?.proxy;
+
+        const _component = ref<typeof component | null>(null);
+        const visible = ref<boolean>(true);
+
+        onMounted(() => {
+          _component.value = proxy?.$refs._component;
+        });
+        const handleClose = function () {
+          // @ts-ignore
+          handle(_component.value.onCancel, () => {
+            visible.value = false;
+            emit("close");
+            emit("cancel");
+            dialogInstance.$.appContext.app.unmount;
+          });
+        };
+        const handleOk = function () {
+          handle(
+            // @ts-ignore
+            _component.value.onOK || _component.value.onOk,
+            () => {
+              visible.value = false;
+              emit("close");
+              emit("ok");
+              // dialogInstance.$destroy();
             }
-          })
-        })
+          );
+        };
 
-        const componentModel = componentProps && componentProps.model
-        if (componentModel) {
-          delete componentProps.model
-        }
-        const ComponentProps = Object.assign({}, componentModel && { model: componentModel } || {}, {
-          ref: '_component',
-          attrs: Object.assign({}, {
-            ...((componentProps && componentProps.attrs) || componentProps)
-          }),
-          on: Object.assign({}, {
-            ...((componentProps && componentProps.on) || componentProps)
-          })
-        })
+        const render = function () {
+          const modalModel = modalProps && modalProps.model;
 
-        return h(Modal, ModalProps, [h(component, ComponentProps)])
-      }
-    }).$mount(dialogDiv)
+          if (modalModel) {
+            delete modalProps.model;
+          }
+          const ModalProps = {
+            visible: visible.value,
+            ...modalProps,
+            onOk: () => {
+              handleOk();
+            },
+            onCancel: () => {
+              handleClose();
+            },
+          };
+          const componentModel = componentProps && componentProps.model;
+          if (componentModel) {
+            delete componentProps.model;
+          }
+
+          const ComponentProps = {
+            ref: "_component",
+            ...((componentModel && { model: componentModel }) || {}),
+            ...componentProps,
+          };
+
+          return h(Modal, ModalProps, [h(component, ComponentProps)]);
+        };
+
+        return () => render();
+      },
+    }).mount(dialogDiv);
   }
 
-  Object.defineProperty(Vue.prototype, '$dialog', {
-    get: () => {
-      return function () {
-        dialog.apply(this, arguments)
-      }
-    }
-  })
-}
+  Vue.config.globalProperties.$dialog = dialog;
+};

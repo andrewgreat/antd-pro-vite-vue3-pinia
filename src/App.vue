@@ -8,15 +8,14 @@
 import { computed, defineComponent } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
-import {useAppStore} from "@/store/modules/app";
-// import { useStore } from 'vuex';
+import { useAppStore } from "@/store/modules/app";
 import { domTitle, setDocumentTitle } from "@/utils/domUtil";
 
 export default defineComponent({
   name: "App",
   setup() {
     const { t, getLocaleMessage } = useI18n();
-    const store = useAppStore()
+    const appStore = useAppStore();
     const route = useRoute();
     console.log("app.vue...");
     const locale = computed(() => {
@@ -24,7 +23,7 @@ export default defineComponent({
       // @ts-ignore
       title && setDocumentTitle(`${t(title)}-${domTitle}`);
 
-      return getLocaleMessage(store.lang).antLocale;
+      return getLocaleMessage(appStore.lang).antLocale;
     });
     const getPopupContainer = (el: Element, dialogContext: any) => {
       if (dialogContext) {

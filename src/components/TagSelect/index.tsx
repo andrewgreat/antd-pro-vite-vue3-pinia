@@ -1,11 +1,11 @@
-import {defineComponent, provide, reactive, ref} from 'vue';
+import { defineComponent, provide, reactive, ref } from 'vue';
 // import PropTypes from 'ant-design-vue/es/_util/vue-types'
 import Option from './TagSelectOption'
 // import { filterEmpty } from '@/utils/userFormat'
 
 const tagSelect = defineComponent({
   name: 'TagSelect',
-  components:{
+  components: {
     Option
   },
   props: {
@@ -32,7 +32,7 @@ const tagSelect = defineComponent({
       default: false
     }
   },
-  setup (props, { slots, emit }) {
+  setup(props, { slots, emit }) {
     // Option
     const hideCheckAll = props.hideCheckAll
     // const expand = ref(false)
@@ -40,7 +40,7 @@ const tagSelect = defineComponent({
 
     const getItemsKey = (items) => {
       const totalItem = {}
-     items && items.forEach(item => {
+      items && items.forEach(item => {
         totalItem[item.props && item.props.value] = false
       })
       return totalItem
@@ -59,10 +59,10 @@ const tagSelect = defineComponent({
       }
     }
     const checkAll = (checked) => {
-        Object.keys(items).forEach(v => {
-          items[v] = checked.checked
-        })
-        localCheckAll.value = checked.checked
+      Object.keys(items).forEach(v => {
+        items[v] = checked.checked
+      })
+      localCheckAll.value = checked.checked
     }
 
     // CheckAll Button
@@ -70,7 +70,7 @@ const tagSelect = defineComponent({
       const renderProps = {
         value: 'total',
         onChange: (checked) => {
-          if (typeof checked === 'object'){
+          if (typeof checked === 'object') {
             checkAll(checked)
             checked.value = 'total'
             emit('change', checked)
@@ -88,39 +88,39 @@ const tagSelect = defineComponent({
     // render option
     const renderTags = (its) => {
       const renderProps = {
-        value:'',
-          onChange: (checked) => {
-            if (typeof checked === 'object') {
-              optionChange(checked)
-              emit('change', checked)
-            }
+        value: '',
+        onChange: (checked) => {
+          if (typeof checked === 'object') {
+            optionChange(checked)
+            emit('change', checked)
+          }
         }
       }
-      return  its.map(vnode => {
+      return its.map(vnode => {
         const options = vnode.children
         const nodeKey = vnode.props.value
         renderProps.value = nodeKey
 
-      // @ts-ignore
+        // @ts-ignore
         return <Option key={nodeKey}
-                              v-model={[items[nodeKey], 'checked']}
-                              {...renderProps}>{options[0].children}</Option>
+          v-model={[items[nodeKey], 'checked']}
+          {...renderProps}>{options[0].children}</Option>
       })
     }
 
     const render = () => {
-        const { prefixCls }  = props
-        const classString = {
-          [`${prefixCls}`]: true
-        }
-      const tagItems = slots.default?.()
-         return (
-          <div class={classString}>
-            {renderCheckAll()}
-            {renderTags(tagItems)}
-          </div>
-        )
+      const { prefixCls } = props
+      const classString = {
+        [`${prefixCls}`]: true
       }
+      const tagItems = slots.default?.()
+      return (
+        <div class={classString}>
+          {renderCheckAll()}
+          {renderTags(tagItems)}
+        </div>
+      )
+    }
 
     return () => render()
   }

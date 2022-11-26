@@ -11,7 +11,6 @@ import router from "@/router";
 import "./style/global.less"; // global style
 
 const app = createApp(App);
-// app.use(store);
 
 console.log("main.ts...");
 app

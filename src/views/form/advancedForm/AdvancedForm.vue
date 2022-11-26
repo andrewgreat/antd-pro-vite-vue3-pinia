@@ -259,6 +259,7 @@ export default defineComponent({
     }
     // 最终全页面提交
     function validate () {
+      console.log('repository',repository.value)
       const repositoryForm = new Promise((resolve, reject) => {
         // @ts-ignore
         repository.value.validate()

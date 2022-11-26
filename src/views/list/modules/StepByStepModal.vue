@@ -7,12 +7,16 @@
     @cancel="handleCancel"
   >
     <a-spin :spinning="confirmLoading">
-      <a-steps :current="currentStep" :style="{ marginBottom: '28px' }" size="small">
+      <a-steps
+        :current="currentStep"
+        :style="{ marginBottom: '28px' }"
+        size="small"
+      >
         <a-step title="基本信息" />
         <a-step title="配置规则属性" />
         <a-step title="设定调度周期" />
       </a-steps>
-      <a-form :form="form">
+      <a-form :form="formRef">
         <!-- step1 -->
         <div v-show="currentStep === 0">
           <a-form-item
@@ -95,113 +99,125 @@
       </a-form>
     </a-spin>
     <template slot="footer">
-      <a-button key="back" @click="backward" v-if="currentStep > 0" :style="{ float: 'left' }" >上一步</a-button>
+      <a-button
+        key="back"
+        @click="backward"
+        v-if="currentStep > 0"
+        :style="{ float: 'left' }"
+        >上一步</a-button
+      >
       <a-button key="cancel" @click="handleCancel">取消</a-button>
-      <a-button key="forward" :loading="confirmLoading" type="primary" @click="handleNext(currentStep)">{{ currentStep === 2 && '完成' || '下一步' }}</a-button>
+      <a-button
+        key="forward"
+        :loading="confirmLoading"
+        type="primary"
+        @click="handleNext(currentStep)"
+        >{{ (currentStep === 2 && "完成") || "下一步" }}</a-button
+      >
     </template>
   </a-modal>
 </template>
 
 <script lang="ts">
-import {defineComponent, nextTick, reactive, ref} from 'vue';
-import {Form} from 'ant-design-vue'
-import pick from 'lodash.pick'
-import dayjs from 'dayjs';
+import { defineComponent, nextTick, reactive, ref } from "vue";
+import { Form } from "ant-design-vue";
+import pick from "lodash.pick";
+import dayjs from "dayjs";
 
 interface Fields {
-  name?: string,
-  desc?: string,
-  target?: number,
-  template?: string,
-  type?: string
-  time?: Date | dayjs.Dayjs,
-  frequency?: string
+  name?: string;
+  desc?: string;
+  target?: number;
+  template?: string;
+  type?: string;
+  time?: dayjs.Dayjs;
+  frequency?: string;
 }
 
-const useForm = Form.useForm
+const useForm = Form.useForm;
 export default defineComponent({
-  name: 'StepByStepModal',
-  setup (props,{emit}) {
+  name: "StepByStepModal",
+  setup(props, { emit }) {
     const labelCol = {
       xs: { span: 24 },
-      sm: { span: 7 }
-    }
-      const wrapperCol = {
+      sm: { span: 7 },
+    };
+    const wrapperCol = {
       xs: { span: 24 },
-      sm: { span: 13 }
-    }
-    const visible = ref(false)
-    const confirmLoading =  ref(false)
-    const currentStep =  ref(0)
-    const mdl = {}
+      sm: { span: 13 },
+    };
+    const visible = ref(false);
+    const confirmLoading = ref(false);
+    const currentStep = ref(0);
+    const mdl = {};
 
     const formRef = reactive(<Fields>{
-      name: '',
-      desc: '',
+      name: "",
+      desc: "",
       target: 0,
-      template: '',
-      type: '',
+      template: "",
+      type: "",
       time: dayjs(new Date()),
-      frequency: 'month'
-    })
+      frequency: "month",
+    });
     const rulesRef = reactive({
-      name: [{required: true}],
-      desc: [{required: true}],
-      target: [{required: true}],
-      template: [{required: true}],
-      type: [{required: true}],
-      time: [{ type: 'object', required: true, message: 'Please select time!' }],
-      frequency: [{required: true}]
-    })
+      name: [{ required: true }],
+      desc: [{ required: true }],
+      target: [{ required: true }],
+      template: [{ required: true }],
+      type: [{ required: true }],
+      time: [
+        { type: "object", required: true, message: "Please select time!" },
+      ],
+      frequency: [{ required: true }],
+    });
     const stepForms = [
-      ['name', 'desc'],
-      ['target', 'template', 'type'],
-      ['time', 'frequency']
-    ]
+      ["name", "desc"],
+      ["target", "template", "type"],
+      ["time", "frequency"],
+    ];
 
-    const { validate, validateInfos } = useForm(formRef, rulesRef)
+    const { validate, validateInfos } = useForm(formRef, rulesRef);
 
     const edit = (record) => {
-      visible.value = true
+      visible.value = true;
       // const { form: { setFieldsValue } } = this
       nextTick(() => {
-        pick(record, [])
-      })
-    }
+        pick(record, []);
+      });
+    };
     const handleNext = (step) => {
-      const localStep = step + 1
+      const localStep = step + 1;
       if (localStep <= 2) {
         // stepForms
-        validate(stepForms[ currentStep.value ])
-          .then(() => {
-              currentStep.value = localStep
-            }
-          )
-        return
+        validate(stepForms[currentStep.value]).then(() => {
+          currentStep.value = localStep;
+        });
+        return;
       }
       // last step
-      confirmLoading.value = true
-      validate(stepForms[ currentStep.value ])
+      confirmLoading.value = true;
+      validate(stepForms[currentStep.value])
         .then((result) => {
-          console.log('result:', result)
+          console.log("result:", result);
           setTimeout(() => {
-            confirmLoading.value = false
-            emit('ok', result)
-          }, 1500)
+            confirmLoading.value = false;
+            emit("ok", result);
+          }, 1500);
         })
-        .catch((errors)=>{
-          confirmLoading.value = false
-          console.log('errors:', errors)
-       })
-    }
-    const backward  = () => {
-      currentStep.value--
-    }
+        .catch((errors) => {
+          confirmLoading.value = false;
+          console.log("errors:", errors);
+        });
+    };
+    const backward = () => {
+      currentStep.value--;
+    };
     const handleCancel = () => {
       // clear form & currentStep
-      visible.value = false
-      currentStep.value = 0
-    }
+      visible.value = false;
+      currentStep.value = 0;
+    };
     // form: this.$form.createForm(this)
     return {
       labelCol,
@@ -216,8 +232,8 @@ export default defineComponent({
       edit,
       handleNext,
       backward,
-      handleCancel
-    }
-  }
-})
+      handleCancel,
+    };
+  },
+});
 </script>

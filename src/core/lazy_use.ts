@@ -50,7 +50,7 @@ import { VueAxios } from '@/utils/request'
 // ext library
 // import VueCropper from 'vue-cropper';
 // import 'vue-cropper/dist/index.css'
-// import Dialog from "@/components/Dialog";
+import Dialog from "@/components/Dialog";
 // import MultiTab from "@/components/MultiTab";
 // import PageLoading from "@/components/PageLoading";
 // import PermissionHelper from "@/core/permission/permission";
@@ -102,16 +102,7 @@ export function lazyApp(app: App<Element>) {
   app.use(Icons)
   app.use(VueAxios)
 
-  // app.use(message)
-  // app.prototype.$confirm = Modal.confirm;
-  // app.prototype.$message = message;
-  // app.prototype.$notification = notification;
-  // app.prototype.$info = Modal.info;
-  // app.prototype.$success = Modal.success;
-  // app.prototype.$error = Modal.error;
-  // app.prototype.$warning = Modal.warning;
-
-  // app.use(Dialog); // this.$dialog func
+  app.use(Dialog); // $dialog func
   // app.use(MultiTab);
   // app.use(PageLoading);
   // app.use(PermissionHelper);

@@ -7,6 +7,8 @@ import viteSvgIcons from 'vite-plugin-svg-icons'
 import { getThemeVariables } from 'ant-design-vue/dist/theme';
 import { viteThemePlugin } from 'vite-plugin-theme';
 import { viteMockServe } from "vite-plugin-mock"
+import Components from 'unplugin-vue-components/vite';
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default ({ command }: ConfigEnv): UserConfigExport =>{
@@ -68,6 +70,9 @@ export default ({ command }: ConfigEnv): UserConfigExport =>{
         iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
         // 指定symbolId格式
         symbolId: 'icon-[name]',
+      }),
+      Components({
+        resolvers: [AntDesignVueResolver()],
       }),
       viteThemePlugin({
         // 匹配需要修改的颜色
