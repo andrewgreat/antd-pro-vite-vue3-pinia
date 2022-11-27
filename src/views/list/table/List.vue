@@ -2,10 +2,10 @@
   <div>
     <div class="table-page-search-wrapper">
       <a-form layout="inline">
-        <a-row :gutter="48">
+        <a-row :gutter="[16, 16]">
           <a-col :md="8" :sm="24">
             <a-form-item label="规则编号">
-              <a-input v-model="queryParam.id" placeholder="" />
+              <a-input v-model:value="queryParam.id" placeholder="" />
             </a-form-item>
           </a-col>
           <a-col :md="8" :sm="24">
@@ -25,7 +25,7 @@
             <a-col :md="8" :sm="24">
               <a-form-item label="调用次数">
                 <a-input-number
-                  v-model="queryParam.callNo"
+                v-model:value="queryParam.callNo"
                   style="width: 100%"
                 />
               </a-form-item>
@@ -33,7 +33,7 @@
             <a-col :md="8" :sm="24">
               <a-form-item label="更新日期">
                 <a-date-picker
-                  v-model="queryParam.date"
+                v-model:value="queryParam.date"
                   style="width: 100%"
                   placeholder="请输入更新日期"
                 />
@@ -42,7 +42,7 @@
             <a-col :md="8" :sm="24">
               <a-form-item label="使用状态">
                 <a-select
-                  v-model="queryParam.useStatus"
+                v-model:value="queryParam.useStatus"
                   placeholder="请选择"
                   default-value="0"
                 >
@@ -69,14 +69,8 @@
                 (advanced && { float: 'right', overflow: 'hidden' }) || {}
               "
             >
-              <a-button type="primary" @click="table?.refresh(true)"
-                >查询</a-button
-              >
-              <a-button
-                style="margin-left: 8px"
-                @click="() => (queryParam = {})"
-                >重置</a-button
-              >
+              <a-button type="primary" @click="table?.refresh(true)">查询</a-button>
+              <a-button style="margin-left: 8px" @click="resetQueryParam">重置</a-button>
               <a @click="toggleAdvanced" style="margin-left: 8px">
                 {{ advanced ? "收起" : "展开" }}
                 <a-icon :type="advanced ? 'up' : 'down'" />
@@ -86,7 +80,7 @@
         </a-row>
       </a-form>
     </div>
-
+    <br />
     <div class="table-operator">
       <a-button type="primary" @click="handleAdd"><plus-outlined />新建</a-button>
       <a-button type="dashed" @click="tableOption"
@@ -105,7 +99,7 @@
         </a-button>
       </a-dropdown>
     </div>
-
+    <br />
     <s-table
       ref="table"
       size="default"
@@ -147,6 +141,13 @@ import dayjs from "dayjs";
 import { STable } from "@/components/index";
 import { getRoleList, getServiceList } from "@/api/manage";
 
+interface QueryParam {
+  id?: number;
+  status?: number;
+  date?: dayjs.Dayjs;
+  callNo?: number;
+  useStatus?: number;
+}
 export default defineComponent({
   name: "TableList",
   components: {
@@ -157,8 +158,16 @@ export default defineComponent({
     const mdl = reactive({});
     // 高级搜索 展开/关闭
     const advanced = ref(false);
+
     // 查询参数
-    const queryParam = reactive({});
+    const queryParam = reactive(<QueryParam>{
+      id: 0,
+      status: undefined,
+      date: dayjs(new Date()),
+      callNo: undefined,
+      useStatus: undefined,
+    });
+ 
     // 表头
     const columns = [
       {
@@ -236,6 +245,14 @@ export default defineComponent({
         });
     };
 
+    const resetQueryParam = () => {
+      queryParam.id=undefined
+      queryParam.status=undefined
+      queryParam.date=undefined
+      queryParam.callNo=undefined
+      queryParam.useStatus=undefined
+    };
+
     const onSelectChange = function (rowKeys, rows) {
       selectedRowKeys.value = rowKeys;
       selectedRows.value = rows;
@@ -304,6 +321,7 @@ export default defineComponent({
       statusTypeFilter,
       statusFilter,
       tableOption,
+      resetQueryParam,
       handleAdd,
       handleEdit,
       handleOk,

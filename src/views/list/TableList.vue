@@ -3,7 +3,7 @@
     <a-card :bordered="false">
       <div class="table-page-search-wrapper">
         <a-form layout="inline">
-          <a-row :gutter="48">
+          <a-row :gutter="[16,16]">
             <a-col :md="8" :sm="24">
               <a-form-item label="规则编号">
                 <a-input v-model:value="queryParam.id" placeholder=""/>
@@ -62,7 +62,7 @@
           </a-row>
         </a-form>
       </div>
-
+      <br/>
       <div class="table-operator">
         <a-button type="primary" @click="handleAdd"><plus-outlined />新建</a-button>
         <a-dropdown  v-if="rowSelection.selectedRowKeys.length > 0">
@@ -78,7 +78,7 @@
           </a-button>
         </a-dropdown>
       </div>
-
+      <br/>
       <s-table
         ref="table"
         size="default"
@@ -208,9 +208,9 @@ export default defineComponent({
       date:  dayjs(new Date()),
       callNo: undefined,
       useStatus: undefined
-    })
+    });
     const rulesRef = reactive({
-    })
+    });
     const { resetFields, validate, validateInfos } = useForm(formRef, rulesRef)
 
     // create model
