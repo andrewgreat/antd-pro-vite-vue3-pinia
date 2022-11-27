@@ -32,6 +32,7 @@ const constantRouterComponents = {
   TableList: () => import('@/views/list/TableList.vue'),
   StandardList: () => import('@/views/list/BasicList.vue'),
   CardList: () => import('@/views/list/CardList.vue'),
+  QueryList: () => import('@/views/list/QueryList.vue'),
   SearchLayout: () => import('@/views/list/search/SearchLayout.vue'),
   SearchArticles: () => import('@/views/list/search/Article.vue'),
   SearchProjects: () => import('@/views/list/search/Projects.vue'),

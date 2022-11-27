@@ -101,7 +101,7 @@ export default defineComponent({
     const loading = shallowRef(false);
     let watermarkContent = "Pro Layout";
     const router = useRouter();
-    const app = useAppStore();
+    const appStore = useAppStore();
     const { t } = useI18n();
     const { menuData } = getMenuData(clearMenuItem(router.getRoutes()));
     // console.log('BasicLayout..',menuData)
@@ -113,19 +113,19 @@ export default defineComponent({
     });
 
     const settings = ref({
-      splitMenus: app.splitMenus,
+      splitMenus: appStore.splitMenus,
       title: defaultSettings.title,
       // 主题 'dark' | 'light' | 'realDark'
-      navTheme: app.navTheme,
+      navTheme: appStore.navTheme,
       // 布局类型
-      layout: app.layout, // 'side', 'top', 'mix'
-      fixedHeader: app.fixedHeader,
-      fixSiderbar: app.fixSiderbar,
+      layout: appStore.layout, // 'side', 'top', 'mix'
+      fixedHeader: appStore.fixedHeader,
+      fixSiderbar: appStore.fixSiderbar,
       // CONTENT_WIDTH_TYPE
-      contentWidth: app.contentWidth,
+      contentWidth: appStore.contentWidth,
       // 主色调
-      primaryColor: app.primaryColor,
-      colorWeak: app.colorWeak,
+      primaryColor: appStore.primaryColor,
+      colorWeak: appStore.colorWeak,
       hideHintAlert: false,
       hideCopyButton: false,
     });
@@ -149,7 +149,7 @@ export default defineComponent({
 
     const handleCollapsed = () => {
       baseState.collapsed = !baseState.collapsed;
-      app.sideCollapsed = baseState.collapsed;
+      appStore.sideCollapsed = baseState.collapsed;
     };
     watchEffect(() => {
       if (router.currentRoute) {

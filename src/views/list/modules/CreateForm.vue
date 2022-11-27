@@ -31,7 +31,6 @@ interface Fields{
   description?: string
 }
 
-const useForm = Form.useForm
 export default defineComponent({
   props: {
     visible: {
@@ -48,6 +47,7 @@ export default defineComponent({
     }
   },
   setup (props) {
+    const useForm = Form.useForm
     const {model} = props
     const formLayout = {
       labelCol: {

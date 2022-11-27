@@ -598,6 +598,16 @@ const userNav = options => {
       component: 'CardList'
     },
     {
+      name: 'query',
+      parentId: 10010,
+      id: 10048,
+      meta: {
+        title: 'menu.list.query-list',
+        show: true
+      },
+      component: 'QueryList'
+    },
+    {
       name: 'search',
       parentId: 10010,
       id: 10014,

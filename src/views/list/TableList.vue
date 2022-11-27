@@ -126,12 +126,11 @@ import CreateForm from './modules/CreateForm.vue'
 interface QueryParam {
   id?: number,
   status?: number,
-  date?: Date | dayjs.Dayjs,
+  date?: dayjs.Dayjs,
   callNo?: number,
   useStatus?: number
 }
 
-const useForm = Form.useForm
 export default defineComponent({
   name: 'TableList',
   components: {
@@ -140,6 +139,7 @@ export default defineComponent({
     StepByStepModal
   },
   setup () {
+    const useForm = Form.useForm
     const table=ref(null)
     const createModal=ref(null)
     const modal=ref(null)
@@ -182,7 +182,7 @@ export default defineComponent({
       }
     ]
 
-    const statusMap = reactive({
+    const statusMap = {
       0: {
         status: 'default',
         text: '关闭'
@@ -199,7 +199,7 @@ export default defineComponent({
         status: 'error',
         text: '异常'
       }
-    })
+    };
     const dataSource = reactive({})
 
     const formRef = reactive(<QueryParam> {

@@ -45,7 +45,6 @@
 <script lang="ts">
 import { defineComponent, reactive, onMounted, ref, toRaw } from "vue";
 import { Form } from "ant-design-vue";
-import pick from "lodash.pick";
 import dayjs from "dayjs";
 
 interface TaskFields {
@@ -65,7 +64,6 @@ export default defineComponent({
   },
   setup(props) {
     const useForm = Form.useForm;
-    const fields = ["title", "startAt", "owner", "description"];
     const visible = ref<boolean>(false);
     const labelCol = {
       xs: { span: 24 },
@@ -91,7 +89,7 @@ export default defineComponent({
     const { validate, validateInfos } = useForm(formRef, rulesRef);
 
     onMounted(() => {
-      props.record && pick(props.record, fields);
+      props.record && Object.assign(formRef, props.record);
     });
 
     const onOk = function () {

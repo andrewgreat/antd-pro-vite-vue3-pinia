@@ -102,6 +102,12 @@ export const asyncRouterMap = [
             meta: { title: 'menu.list.card-list', keepAlive: true, permission: ['table'] }
           },
           {
+            path: '/list/query-list',
+            name: 'QueryList',
+            component: () => import('@/views/exception/403.vue'),
+            meta: { title: 'menu.list.query-list', keepAlive: true, permission: ['table'] }
+          },
+          {
             path: '/list/search',
             name: 'SearchList',
             component: () => import('@/views/exception/403.vue'),
