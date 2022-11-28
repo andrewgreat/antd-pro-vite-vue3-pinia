@@ -3,7 +3,7 @@ import storage from "store";
 import { getInfo, login, logout } from "@/api/login";
 import { ACCESS_TOKEN } from "@/store/store-types";
 import { welcome } from "@/utils/util";
-import { CustemRouter } from "@/router/types";
+
 
 export const useUserStore = defineStore("userStore", {
   state: () => {
@@ -13,14 +13,14 @@ export const useUserStore = defineStore("userStore", {
       nickname: "",
       welcome: "",
       avatar: "",
-      roles: [] as CustemRouter[],
+      roles: [],
       info: {},
     };
   },
   getters: {
-    getRoles(state) {
+    getRoles() {
       return () => {
-        return state.roles;
+        return this.roles;
       };
     },
   },

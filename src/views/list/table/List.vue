@@ -124,8 +124,8 @@
             <template #overlay>
               <a-menu>
                 <a-menu-item><a href="javascript:;">详情</a></a-menu-item>
-                <a-menu-item><a href="javascript:;">禁用</a></a-menu-item>
-                <a-menu-item><a href="javascript:;">删除</a></a-menu-item>
+                <a-menu-item v-if="$auth('table.disable')"><a href="javascript:;">禁用</a></a-menu-item>
+                <a-menu-item v-if="$auth('table.delete')"><a href="javascript:;">删除</a></a-menu-item>
               </a-menu>
             </template>
           </a-dropdown>

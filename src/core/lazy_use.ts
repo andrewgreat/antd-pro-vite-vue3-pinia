@@ -53,7 +53,7 @@ import { VueAxios } from '@/utils/request'
 import Dialog from "@/components/Dialog";
 // import MultiTab from "@/components/MultiTab";
 // import PageLoading from "@/components/PageLoading";
-// import PermissionHelper from "@/core/permission/permission";
+import Authorize from "@/core/authorize";
 // import "./directives/action";
 
 export function lazyApp(app: App<Element>) {
@@ -105,7 +105,7 @@ export function lazyApp(app: App<Element>) {
   app.use(Dialog); // $dialog func
   // app.use(MultiTab);
   // app.use(PageLoading);
-  // app.use(PermissionHelper);
+  app.use(Authorize);
   // app.use(VueCropper);
 
   process.env.NODE_ENV !== 'production' && console.warn('[antd-pro] NOTICE: Antd use lazy-load.')
