@@ -20,7 +20,7 @@ export const PERMISSION_ENUM = {
 export const useAuth = function (permissions) {
   const userStore = useUserStore();
   const [permission, action] = permissions.split(".");
-  const permissionList = userStore.getRoles().permissions;
+  const permissionList = userStore.roles.permissions;
   return (
     permissionList
       .find((val) => {
