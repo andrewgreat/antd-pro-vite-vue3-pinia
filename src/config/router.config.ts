@@ -4,7 +4,7 @@ import BasicLayout from '@/layouts/BasicLayout.vue'
 
 // @ts-ignore
 import { bxAnaalyse } from '@/core/icons'
-import {CustemRouter} from '@/router/types';
+import {CustemRouter} from '@/utils/types';
 
 const RouteView = {
   name: 'RouteView',

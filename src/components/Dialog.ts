@@ -1,7 +1,7 @@
 import { createApp, getCurrentInstance, onMounted, ref, h } from "vue";
 import { Modal } from "ant-design-vue";
 
-export default (Vue) => {
+export default (app) => {
   function dialog(
     component: any,
     componentProps: { model: any },
@@ -104,5 +104,5 @@ export default (Vue) => {
     }).mount(dialogDiv);
   }
 
-  Vue.config.globalProperties.$dialog = dialog;
+  app.config.globalProperties.$dialog = dialog;
 };

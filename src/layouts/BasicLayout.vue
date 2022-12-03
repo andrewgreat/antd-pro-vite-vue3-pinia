@@ -11,6 +11,10 @@
     :collapsedButtonRender="false"
     :locale="t"
   >
+    <template #collapsedButtonRender="collapsed">
+      <HeartOutlined v-if="collapsed" />
+      <SmileOutlined v-else />
+    </template>
     <template #menuHeaderRender>
       <a>
         <img src="/public/logo.svg" />
@@ -37,12 +41,6 @@
         </a-tooltip>
       </div>
     </template>
-
-    <!-- custom right-content -->
-    <template #rightContentRender>
-      <right-content />
-    </template>
-
     <!-- custom breadcrumb itemRender  -->
     <template #breadcrumbRender="{ route, params, routes }">
       <span v-if="routes.indexOf(route) === routes.length - 1">
@@ -52,15 +50,27 @@
         {{ $t(route.breadcrumbName) }}
       </router-link>
     </template>
+    <!-- custom right-content -->
+    <template #rightContentRender>
+      <right-content />
+    </template>
+
+    <a-layout-content>
+      <multi-tab v-if="isMultiTab"></multi-tab>
+      <transition name="page-transition">
+        <!-- content begin -->
+        <route-view v-slot="{ Component }" :keepAlive=true>
+          <component :is="Component" />
+        </route-view>
+        <!-- content end -->
+      </transition>
+    </a-layout-content>
+
+    <!-- custom footer / 自定义Footer -->
+    <template #footerRender>
+      <pro-global-footer />
+    </template>
     <setting-drawer v-model="settings" />
-
-    <!-- content begin -->
-    <router-view v-slot="{ Component }">
-      <component :is="Component" />
-    </router-view>
-
-    <!-- content end -->
-    <pro-global-footer />
   </pro-layout>
 </template>
 
@@ -88,6 +98,7 @@ import defaultSettings from "@/config/defaultSettings";
 import RightContent from "@/components/GlobalHeader/RightContent.vue";
 import ProGlobalFooter from "@/components/GlobalFooter/index.vue";
 import SettingDrawer from "@/components/SettingDrawer/index.vue";
+import RouteView from "./RouteView.vue";
 
 export default defineComponent({
   name: "BasicLayout",
@@ -96,12 +107,16 @@ export default defineComponent({
     RightContent,
     GlobalFooter,
     SettingDrawer,
+    RouteView,
   },
   setup() {
+    // const tabList = ["workspace", "工作台2", "工作台2"];
     const loading = shallowRef(false);
     let watermarkContent = "Pro Layout";
     const router = useRouter();
     const appStore = useAppStore();
+    const isMultiTab = ref(appStore.multiTab);
+
     const { t } = useI18n();
     const { menuData } = getMenuData(clearMenuItem(router.getRoutes()));
     // console.log('BasicLayout..',menuData)
@@ -166,14 +181,15 @@ export default defineComponent({
       loading.value = true;
       setTimeout(() => {
         loading.value = false;
-      }, 2000);
+      }, 1000);
     }
     onMounted(() => {
       setTimeout(() => {
         watermarkContent = "New Mark";
-      }, 2000);
+      }, 1000);
     });
     return {
+      isMultiTab,
       t,
       watermarkContent,
       menuData,

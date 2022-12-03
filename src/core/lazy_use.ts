@@ -51,7 +51,7 @@ import { VueAxios } from '@/utils/request'
 // import VueCropper from 'vue-cropper';
 // import 'vue-cropper/dist/index.css'
 import Dialog from "@/components/Dialog";
-// import MultiTab from "@/components/MultiTab";
+import MultiTab from "@/components/MultiTab";
 // import PageLoading from "@/components/PageLoading";
 import Authorize from "@/core/authorize";
 // import "./directives/action";
@@ -103,7 +103,7 @@ export function lazyApp(app: App<Element>) {
   app.use(VueAxios)
 
   app.use(Dialog); // $dialog func
-  // app.use(MultiTab);
+  app.use(MultiTab);
   // app.use(PageLoading);
   app.use(Authorize);
   // app.use(VueCropper);

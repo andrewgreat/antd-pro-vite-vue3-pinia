@@ -43,3 +43,12 @@ export interface CustemRouter  {
   // 动态添加
   sort?: number
 }
+
+export interface TabPanesType {
+  key: string; //fullPath
+  title?: string | any;
+  isHomePage?: boolean,
+  content?: string;
+  closable?: boolean;
+}
+

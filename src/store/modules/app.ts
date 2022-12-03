@@ -18,7 +18,7 @@ export const useAppStore = defineStore("appStore", {
       autoHideHeader: settings.autoHideHeader,
       primaryColor: settings.primaryColor,
       colorWeak: settings.colorWeak,
-      multiTab: true,
+      multiTab: settings.multiTab,
       lang: "zh-CN",
       _antLocale: {},
     };

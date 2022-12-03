@@ -24,6 +24,7 @@
     "moment": "^2.29.1",
     "nprogress": "^1.0.0-1",
     "pinia": "^2.0.24",
+    "pinia-plugin-persistedstate": "^3.0.1",
     "store": "^2.0.12",
     "vue": "^3.2.41",
     "vue-clipboard3": "^2.0.0",

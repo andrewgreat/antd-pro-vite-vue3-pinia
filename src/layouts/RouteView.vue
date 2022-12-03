@@ -20,7 +20,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const app = useAppStore();
+    const appStore = useAppStore();
     const router = useRouter();
     const isKeep = ref(false);
 
@@ -30,8 +30,8 @@ export default defineComponent({
         // 这里增加了 multiTab 的判断，当开启了 multiTab 时
         // 应当全部组件皆缓存，否则会导致切换页面后页面还原成原始状态
         // 若确实不需要，可改为 return meta.keepAlive ? isKeep : notKeep
-        const routeKeepAlive = router.currentRoute.value.meta.keepAlive;
-        if (!app.multiTab && !routeKeepAlive && !props.keepAlive) {
+        const routeKeepAlive = newVal.meta.keepAlive;
+        if (!appStore.multiTab && !routeKeepAlive && !props.keepAlive) {
           isKeep.value = false;
         } else {
           isKeep.value = true;

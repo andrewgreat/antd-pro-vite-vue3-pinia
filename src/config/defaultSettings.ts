@@ -22,8 +22,9 @@ export default {
   menu: {
     locale: true
   },
-  multiTab: false,
+  multiTab: true,
   title: 'Ant Design Pro',
+  homePage: '/dashboard/workplace',
   pwa: false,
   iconfontUrl: '',
   production: process.env.NODE_ENV === 'production' && process.env.VUE_APP_PREVIEW !== 'true'

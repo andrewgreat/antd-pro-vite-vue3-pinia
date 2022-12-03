@@ -6,7 +6,7 @@ import BasicLayout from '@/layouts/BasicLayout.vue'
 import BlankLayout from '@/layouts/BlankLayout.vue'
 import RouteView from '@/layouts/RouteView.vue'
 import PageView from '@/layouts/PageView.vue'
-import {CustemRouter} from '@/router/types';
+import {CustemRouter} from '@/utils/types';
 
 // 前端路由表
 const constantRouterComponents = {
