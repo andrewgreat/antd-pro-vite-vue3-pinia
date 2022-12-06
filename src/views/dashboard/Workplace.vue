@@ -7,7 +7,7 @@
         </div>
         <div class="content">
           <div class="content-title">
-            {{ tf }}，{{ user.name
+            {{ tf }}，{{ currentUser.nickname
             }}<span class="welcome-text">，{{ welcome }}</span>
           </div>
           <div>前端工程师 | 蚂蚁金服 - 某某某事业群 - VUE平台</div>
@@ -193,7 +193,6 @@ export default defineComponent({
       return userStore.info;
     });
 
-    const avatar = userStore.avatar;
     const user = userStore.info;
 
     const projects = reactive<Project[]>([]);
@@ -203,16 +202,13 @@ export default defineComponent({
     const teams = ref(<team[]>[]);
 
     const radarData = <Object[]>[];
-    const nickname = computed(() => userStore.nickname);
-    const welcome = computed(() => userStore.welcome);
+    const welcome =ref(userStore.welcome);
 
-    const currentUser = () => {
-      return {
-        name: nickname,
-        avatar:
-          "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
-      };
-    };
+    const currentUser = reactive( {
+      nickname: userStore.nickname,
+        avatar: userStore.avatar,
+      });
+
 
     const getProjects = () => {
       requestGet("/api/list/search/projects").then((res) => {
@@ -265,7 +261,6 @@ export default defineComponent({
 
     return {
       tf,
-      avatar,
       user,
       projects,
       loading,
@@ -273,7 +268,6 @@ export default defineComponent({
       activities,
       teams,
       radarData,
-      nickname,
       welcome,
       currentUser,
       userInfo,

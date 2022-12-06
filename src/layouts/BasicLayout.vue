@@ -57,13 +57,13 @@
 
     <a-layout-content>
       <multi-tab v-if="isMultiTab"></multi-tab>
-      <transition name="page-transition">
-        <!-- content begin -->
-        <route-view v-slot="{ Component }" :keepAlive=true>
+      <!-- content begin -->
+      <route-view v-slot="{ Component }" :keepAlive="true">
+        <transition name="MainFade" mode="out-in">
           <component :is="Component" />
-        </route-view>
-        <!-- content end -->
-      </transition>
+        </transition>
+      </route-view>
+      <!-- content end -->
     </a-layout-content>
 
     <!-- custom footer / 自定义Footer -->
@@ -204,4 +204,6 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+@import "./BasicLayout.less";
+</style>

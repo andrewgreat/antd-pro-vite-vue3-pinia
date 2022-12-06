@@ -1,6 +1,12 @@
 {
   "name": "antd-pro-vite-vue3",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Andrew Zhu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewgreat/antd-pro-vite-vue3-pinia"
+  },
   "scripts": {
     "serve": "vite",
     "preview": "vite preview",
@@ -21,7 +27,6 @@
     "lodash.pick": "^4.4.0",
     "md5": "^2.3.0",
     "mockjs": "^1.1.0",
-    "moment": "^2.29.1",
     "nprogress": "^1.0.0-1",
     "pinia": "^2.0.24",
     "pinia-plugin-persistedstate": "^3.0.1",

@@ -51,7 +51,6 @@ export function loadLanguageAsync(lang = defaultLang) {
           i18n.global.setLocaleMessage(lang, message)
           loadedLanguages.push(lang)
           console.log(message)
-          // console.log(moment.updateLocale(message.momentName, message.momentLocale))
           return setI18nLanguage(lang)
         })
       }
