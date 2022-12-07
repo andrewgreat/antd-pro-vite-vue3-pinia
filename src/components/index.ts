@@ -9,8 +9,8 @@ import MiniBar from '@/components/Charts/MiniBar.vue'
 import MiniProgress from '@/components/Charts/MiniProgress.vue'
 import Radar from '@/components/Charts/Radar.vue'
 import RankList from '@/components/Charts/RankList.vue'
-// import TransferBar from '@/components/Charts/TransferBar.vue'
-// import TagCloud from '@/components/Charts/TagCloud.vue'
+import TransferBar from '@/components/Charts/TransferBar.vue'
+import TagCloud from '@/components/Charts/TagCloud.vue'
 //
 // pro components
 import AvatarList from '@/components/AvatarList/index'
@@ -26,7 +26,7 @@ import TagSelect from '@/components/TagSelect/index'
 import StandardFormRow from '@/components/StandardFormRow/index'
 import ArticleListContent from '@/components/ArticleListContent'
 //
-// import Dialog from '@/components/Dialog'
+import Dialog from '@/components/Dialog'
 
 export {
   AvatarList,
@@ -39,19 +39,19 @@ export {
   MiniBar,
   MiniProgress,
   Radar,
-  // TagCloud,
+  TagCloud,
   RankList,
-  // TransferBar,
+  TransferBar,
   Trend,
   Ellipsis,
   // FooterToolbar,
   NumberInfo,
   // Tree,
   STable,
-  // MultiTab,
+  MultiTab,
   // IconSelector,
   TagSelect,
   StandardFormRow,
   ArticleListContent,
-  // Dialog
+  Dialog
 }
