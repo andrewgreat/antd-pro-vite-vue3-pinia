@@ -1,4 +1,4 @@
-import { App } from 'vue'
+import { App } from "vue";
 
 // base library
 import {
@@ -42,14 +42,14 @@ import {
   Result,
   Statistic,
   Descriptions,
-  Space
-} from 'ant-design-vue'
-import Icons from '@/utils/icons';
-import { VueAxios } from '@/utils/request'
+  Space,
+} from "ant-design-vue";
+import Icons from "@/utils/icons";
+import { VueAxios } from "@/utils/request";
 
 // ext library
-// import VueCropper from 'vue-cropper';
-// import 'vue-cropper/dist/index.css'
+import VueCropper from "vue-cropper";
+import "vue-cropper/dist/index.css";
 import Dialog from "@/components/Dialog";
 import MultiTab from "@/components/MultiTab";
 // import PageLoading from "@/components/PageLoading";
@@ -57,56 +57,57 @@ import Authorize from "@/core/authorize";
 // import "./directives/action";
 
 export function lazyApp(app: App<Element>) {
-  console.log('main.ts...','lazy')
-  app.use(ConfigProvider)
-  app.use(Layout)
-  app.use(Input)
-  app.use(InputNumber)
-  app.use(Button)
-  app.use(Switch)
-  app.use(Radio)
-  app.use(Checkbox)
-  app.use(Select)
-  app.use(Card)
-  app.use(Form)
-  app.use(Row)
-  app.use(Col)
-  app.use(Modal)
-  app.use(Table)
-  app.use(Tabs)
-  app.use(Badge)
-  app.use(Popover)
-  app.use(Dropdown)
-  app.use(List)
-  app.use(Avatar)
-  app.use(Breadcrumb)
-  app.use(Steps)
-  app.use(Spin)
-  app.use(Menu)
-  app.use(Drawer)
-  app.use(Tooltip)
-  app.use(Alert)
-  app.use(Tag)
-  app.use(Divider)
-  app.use(DatePicker)
-  app.use(TimePicker)
-  app.use(Upload)
-  app.use(Progress)
-  app.use(Skeleton)
-  app.use(Popconfirm)
-  app.use(PageHeader)
-  app.use(Result)
-  app.use(Statistic)
-  app.use(Descriptions)
-  app.use(Space)
-  app.use(Icons)
-  app.use(VueAxios)
+  console.log("main.ts...", "lazy");
+  app.use(ConfigProvider);
+  app.use(Layout);
+  app.use(Input);
+  app.use(InputNumber);
+  app.use(Button);
+  app.use(Switch);
+  app.use(Radio);
+  app.use(Checkbox);
+  app.use(Select);
+  app.use(Card);
+  app.use(Form);
+  app.use(Row);
+  app.use(Col);
+  app.use(Modal);
+  app.use(Table);
+  app.use(Tabs);
+  app.use(Badge);
+  app.use(Popover);
+  app.use(Dropdown);
+  app.use(List);
+  app.use(Avatar);
+  app.use(Breadcrumb);
+  app.use(Steps);
+  app.use(Spin);
+  app.use(Menu);
+  app.use(Drawer);
+  app.use(Tooltip);
+  app.use(Alert);
+  app.use(Tag);
+  app.use(Divider);
+  app.use(DatePicker);
+  app.use(TimePicker);
+  app.use(Upload);
+  app.use(Progress);
+  app.use(Skeleton);
+  app.use(Popconfirm);
+  app.use(PageHeader);
+  app.use(Result);
+  app.use(Statistic);
+  app.use(Descriptions);
+  app.use(Space);
+  app.use(Icons);
+  app.use(VueAxios);
 
   app.use(Dialog); // $dialog func
   app.use(MultiTab);
   // app.use(PageLoading);
   app.use(Authorize);
-  // app.use(VueCropper);
+  app.use(VueCropper);
 
-  process.env.NODE_ENV !== 'production' && console.warn('[antd-pro] NOTICE: Antd use lazy-load.')
+  process.env.NODE_ENV !== "production" &&
+    console.warn("[antd-pro] NOTICE: Antd use lazy-load.");
 }

@@ -13,4 +13,4 @@ const api = {
 };
 
  
-export default MultiTab;
+export default api;

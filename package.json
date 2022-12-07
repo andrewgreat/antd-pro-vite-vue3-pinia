@@ -34,9 +34,9 @@
     "store": "^2.0.12",
     "vue": "^3.2.41",
     "vue-clipboard3": "^2.0.0",
-    "vue-cropper": "^1.0.2",
-    "vue-i18n": "^9.2.0-beta.26",
-    "vue-router": "^4.0.12"
+    "vue-cropper": "^1.0.5",
+    "vue-i18n": "^9.2.2",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.1.1",
