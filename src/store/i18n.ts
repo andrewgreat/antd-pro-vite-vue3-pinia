@@ -1,11 +1,14 @@
 import { computed } from "vue";
 import { useAppStore } from "@/store/modules/app";
 
-const app = useAppStore();
-
-export const currentLang = computed(() => app.lang);
+export const currentLang = computed(() => {
+  console.log("i18n...")
+  const appStore = useAppStore();
+ return appStore.lang;
+});
 export const setLang = (lang) => {
-  app.setLang(lang).then(() => {});
+  const appStore = useAppStore();
+  appStore.setLang(lang).then(() => {});
 };
 
 export default { currentLang, setLang };

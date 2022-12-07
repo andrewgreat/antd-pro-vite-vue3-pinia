@@ -2,7 +2,7 @@
 import Bar from '@/components/Charts/Bar.vue'
 import Pie from '@/components/Charts/Pie.vue'
 import ChartCard from '@/components/Charts/ChartCard.vue'
-// import Liquid from '@/components/Charts/Liquid.vue'
+import Liquid from '@/components/Charts/Liquid.vue'
 import MiniArea from '@/components/Charts/MiniArea.vue'
 import MiniSmoothArea from '@/components/Charts/MiniSmoothArea.vue'
 import MiniBar from '@/components/Charts/MiniBar.vue'
@@ -33,7 +33,7 @@ export {
   Bar,
   Pie,
   ChartCard,
-  // Liquid,
+  Liquid,
   MiniArea,
   MiniSmoothArea,
   MiniBar,

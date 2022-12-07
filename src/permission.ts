@@ -13,13 +13,13 @@ import { ACCESS_TOKEN } from "@/store/store-types";
 export default function permission(app: App<Element>) {
   console.log("main.ts...", "permission");
   NProgress.configure({ showSpinner: false }); // NProgress Configuration
-  const user = useUserStore();
+  const userStore = useUserStore();
   const routeStore = useRouteStore();
   const allowList = ["login", "register", "registerResult"]; // no redirect allowList
   const loginRoutePath = "/user/login";
   const defaultRoutePath = "/dashboard/workplace";
 
-  const GetInfo = () => user.GetInfo();
+  const GetInfo = () => userStore.GetInfo();
 
   // const { t } = useI18n()
 
@@ -36,7 +36,7 @@ export default function permission(app: App<Element>) {
         NProgress.done();
       } else {
         // check login user.roles is null
-        if (user.roles.length === 0) {
+        if (userStore.roles.length === 0) {
           // request login userInfo
           GetInfo()
             .then((res) => {
@@ -67,7 +67,7 @@ export default function permission(app: App<Element>) {
                 description: "请求用户信息失败，请重试",
               });
               // 失败时，获取用户信息失败时，调用登出，来清空历史保留信息
-              user.Logout().then(() => {
+              userStore.Logout().then(() => {
                 next({
                   path: loginRoutePath,
                   query: { redirect: to.fullPath },
