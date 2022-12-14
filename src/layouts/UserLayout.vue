@@ -8,7 +8,7 @@
         <div class="top">
           <div class="header">
             <a href="/">
-              <img src="/public/logo.svg" class="logo" alt="logo" />
+              <img src="/logo.svg" class="logo" alt="logo" />
               <span class="title">Ant Design</span>
             </a>
           </div>

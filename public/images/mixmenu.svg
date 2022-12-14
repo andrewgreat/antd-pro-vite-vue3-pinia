@@ -1,40 +1,101 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="52px" height="45px" viewBox="0 0 52 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>Group 5 Copy 5</title>
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <filter x="-9.4%" y="-6.2%" width="118.8%" height="122.5%" filterUnits="objectBoundingBox" id="filter-1">
-            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.15 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
-            <feMerge>
-                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
-                <feMergeNode in="SourceGraphic"></feMergeNode>
-            </feMerge>
-        </filter>
-        <rect id="path-2" x="0" y="0" width="48" height="40" rx="4"></rect>
-        <filter x="-4.2%" y="-2.5%" width="108.3%" height="110.0%" filterUnits="objectBoundingBox" id="filter-4">
-            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="0.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-    </defs>
-    <g id="配置面板" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="setting-copy-2" transform="translate(-1190.000000, -337.000000)">
-            <g id="Group-8" transform="translate(1167.000000, 0.000000)">
-                <g id="Group-5-Copy-5" filter="url(#filter-1)" transform="translate(25.000000, 338.000000)">
-                    <mask id="mask-3" fill="white">
-                        <use xlink:href="#path-2"></use>
-                    </mask>
-                    <g id="Rectangle-18">
-                        <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-2"></use>
-                        <use fill="#F0F2F5" fill-rule="evenodd" xlink:href="#path-2"></use>
-                    </g>
-                    <rect id="Rectangle-11" fill="#FFFFFF" mask="url(#mask-3)" x="-1" y="0" width="49" height="10"></rect>
-                    <rect id="Rectangle-18" fill="#303648" mask="url(#mask-3)" x="0" y="0" width="16" height="44"></rect>
-                </g>
-            </g>
-        </g>
+<svg width="52" height="45" viewBox="0 0 52 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="47" width="54" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_123">
+   <g transform="matrix(1.0772424968425796,0,0,1.3760074723743778,-18.79181813795364,-56.40384225548213) " fill-rule="evenodd" fill="none" id="svg_108">
+    <g stroke="null" id="svg_109">
+     <g stroke="null" id="svg_110">
+      <g stroke="null" filter="url(#svg_112)" id="svg_111">
+       <mask stroke="null" transform="translate(-0.21912722289562225,5.1017255783081055) translate(24.859683990478516,35.11089324951172) translate(-8.987285614013672,0) translate(0,-8.710151672363281) translate(89,137) translate(1167,0) translate(-1254,-136) " id="svg_114">
+        <use stroke="null" id="svg_120" xlink:href="#svg_117"/>
+       </mask>
+       <g stroke="null" id="svg_116">
+        <use stroke="null" id="svg_121" x="17.653271" y="32.502467" xlink:href="#svg_117" filter="url(#svg_118)" fill="black"/>
+        <use stroke="null" id="svg_122" x="17.653271" y="32.502467" xlink:href="#svg_117" fill-rule="evenodd" fill="#F0F2F5"/>
+       </g>
+       <rect stroke="null" height="44" width="16" y="32.502467" x="17.653271" mask="url(#svg_114)" fill="#FFFFFF" id="svg_115"/>
+       <rect stroke="null" height="10" width="49" y="32.502467" x="16.653271" mask="url(#svg_114)" fill="#FFFFFF" id="svg_113"/>
+      </g>
+     </g>
     </g>
+   </g>
+  </g>
+  <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+  <desc transform="matrix(1.5745444848876247,0,0,1.5745444848876247,0,0) ">Created with Sketch.</desc>
+  <defs>
+   <rect rx="4" height="40" width="48" y="0" x="0" id="svg_21"/>
+  </defs>
+  <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+  <desc transform="matrix(1.5745444848876247,0,0,1.5745444848876247,0,0) ">Created with Sketch.</desc>
+  <defs>
+   <rect rx="4" height="40" width="48" y="0" x="0" id="svg_49"/>
+  </defs>
+  <defs>
+   <filter id="svg_72" filterUnits="objectBoundingBox" height="122.5%" width="118.8%" y="-6.2%" x="-9.4%">
+    <feGaussianBlur stdDeviation="1"/>
+   </filter>
+   <rect rx="4" height="40" width="48" y="0" x="0" id="svg_77"/>
+   <filter id="svg_78" filterUnits="objectBoundingBox" height="110.0%" width="108.3%" y="-2.5%" x="-4.2%">
+    <feGaussianBlur stdDeviation="0.5"/>
+   </filter>
+  </defs>
+  <g stroke="null" id="svg_83">
+   <g stroke="null" transform="matrix(1.066881956380656,0,0,0.3504073231224322,8.382885566152858,2.016694160681233) " fill-rule="evenodd" fill="none" id="svg_68">
+    <g stroke="null" id="svg_69">
+     <g stroke="null" id="svg_70">
+      <g stroke="null" filter="url(#svg_72)" id="svg_71">
+       <mask stroke="null" transform="translate(0,0.5972741842269897) translate(0,0.5972741842269897) translate(0,0.5972741842269897) translate(0,0.5972741842269897) translate(0,-2.389096736907959) translate(0.21547360718250275,1.1945483684539795) translate(-9.487286567687988,0) translate(0,-6.710152626037598) translate(25,137) translate(1167,0) translate(-1190,-136) " id="svg_74">
+        <use stroke="null" id="svg_80" xlink:href="#svg_77"/>
+       </mask>
+       <g stroke="null" id="svg_76">
+        <use stroke="null" id="svg_81" x="-7.271813" y="-4.515604" xlink:href="#svg_77" filter="url(#svg_78)" fill="black"/>
+        <use stroke="null" id="svg_82" x="-7.271813" y="-4.515604" xlink:href="#svg_77" fill-rule="evenodd" fill="#303648"/>
+       </g>
+       <rect stroke="null" height="10" width="48" y="-4.515604" x="-7.271813" mask="url(#svg_74)" fill="#303648" id="svg_75"/>
+       <rect stroke="null" height="40" width="16" y="-4.515604" x="-7.271813" mask="url(#svg_74)" fill="#303648" id="svg_73"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+  <g stroke="null" id="svg_95">
+   <g stroke="null" transform="matrix(0.31975596969827247,0,0,1.0975333649391632,2.844768684536293,-54.7130075281259) " fill-rule="evenodd" fill="none" id="svg_94">
+    <g stroke="null" id="svg_93">
+     <g stroke="null" id="svg_92">
+      <g stroke="null" filter="url(#svg_72)" id="svg_91">
+       <mask stroke="null" transform="translate(0,0.2094559669494629) translate(0,0.2094559669494629) translate(-0.7771380543708801,0) translate(0,0.2051587998867035) translate(0,0.2051587998867035) translate(0.7771380543708801,0) translate(-0.7771380543708801,0) translate(-0.7771380543708801,0) translate(-0.7771380543708801,0) translate(-0.21547360718250275,56.74105453491211) translate(0,-2.389096736907959) translate(0.21547360718250275,1.1945483684539795) translate(-9.487286567687988,0) translate(0,-6.710152626037598) translate(25,137) translate(1167,0) translate(-1190,-136) " id="svg_85">
+        <use stroke="null" id="svg_84" xlink:href="#svg_77"/>
+       </mask>
+       <g stroke="null" id="svg_88">
+        <use stroke="null" id="svg_86" x="-9.818701" y="50.665583" xlink:href="#svg_77" filter="url(#svg_78)" fill="black"/>
+        <use stroke="null" id="svg_87" x="-9.818701" y="50.665583" xlink:href="#svg_77" fill-rule="evenodd" fill="#303648"/>
+       </g>
+       <rect stroke="null" height="10" width="48" y="50.665583" x="-9.818701" mask="url(#svg_74)" fill="#303648" id="svg_89"/>
+       <rect stroke="null" height="40" width="16" y="50.665583" x="-9.818701" mask="url(#svg_74)" fill="#303648" id="svg_90"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+  <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+  <desc transform="matrix(1.5745444848876247,0,0,1.5745444848876247,0,0) ">Created with Sketch.</desc>
+  <defs>
+   <filter id="svg_112" filterUnits="objectBoundingBox" height="122.5%" width="118.8%" y="-6.2%" x="-9.4%">
+    <feGaussianBlur stdDeviation="1"/>
+   </filter>
+   <rect rx="4" height="40" width="48" y="0" x="0" id="svg_117"/>
+   <filter id="svg_118" filterUnits="objectBoundingBox" height="110.0%" width="108.3%" y="-2.5%" x="-4.2%">
+    <feGaussianBlur stdDeviation="0.5"/>
+   </filter>
+  </defs>
+ </g>
 </svg>

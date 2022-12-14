@@ -2,7 +2,7 @@ import { MockMethod } from 'vite-plugin-mock'
 import { builder } from '../util'
 
 const info = options => {
-  console.log('options', options)
+  // console.log('options', options)
   const userInfo = {
     id: '4291d7da9005377ec9aec4a71ea837f',
     name: '碧海蓝天',
@@ -857,7 +857,7 @@ const userNav = options => {
     }
   ]
   const json = builder(nav,null)
-  console.log('json', json)
+  // console.log('json', json)
   return json
 }
 

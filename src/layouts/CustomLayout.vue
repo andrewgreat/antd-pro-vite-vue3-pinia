@@ -10,7 +10,7 @@
   >
     <template #menuHeaderRender>
       <a>
-        <img src="/public/logo.svg" />
+        <img src="/logo.svg" />
         <h1>Pro Layout</h1>
       </a>
     </template>
