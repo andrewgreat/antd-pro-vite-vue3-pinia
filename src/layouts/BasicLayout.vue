@@ -17,7 +17,7 @@
     </template>
     <template #menuHeaderRender>
       <a>
-        <img src="/public/logo.svg" />
+        <img src="/logo.svg" />
         <h1>{{ settings.title }}</h1>
       </a>
     </template>
@@ -87,6 +87,7 @@ import {
 } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
+import { ConfigProvider } from "ant-design-vue";
 import { useAppStore } from "@/store/modules/app";
 import {
   getMenuData,
@@ -99,6 +100,7 @@ import RightContent from "@/components/GlobalHeader/RightContent.vue";
 import ProGlobalFooter from "@/components/GlobalFooter/index.vue";
 import SettingDrawer from "@/components/SettingDrawer/index.vue";
 import RouteView from "./RouteView.vue";
+import { changeTheme } from "@/utils/theme";
 
 export default defineComponent({
   name: "BasicLayout",
@@ -110,7 +112,6 @@ export default defineComponent({
     RouteView,
   },
   setup() {
-    // const tabList = ["workspace", "工作台2", "工作台2"];
     const loading = shallowRef(false);
     let watermarkContent = "Pro Layout";
     const router = useRouter();
@@ -132,14 +133,16 @@ export default defineComponent({
       title: defaultSettings.title,
       // 主题 'dark' | 'light' | 'realDark'
       navTheme: appStore.navTheme,
+      theme: {
+        // 主色调
+        primaryColor: appStore.theme.primaryColor,
+      },
       // 布局类型
       layout: appStore.layout, // 'side', 'top', 'mix'
       fixedHeader: appStore.fixedHeader,
       fixSiderbar: appStore.fixSiderbar,
       // CONTENT_WIDTH_TYPE
       contentWidth: appStore.contentWidth,
-      // 主色调
-      primaryColor: appStore.primaryColor,
       colorWeak: appStore.colorWeak,
       hideHintAlert: false,
       hideCopyButton: false,
@@ -183,10 +186,17 @@ export default defineComponent({
         loading.value = false;
       }, 1000);
     }
+    function handerThemeColor() {
+      changeTheme({
+        primaryColor: settings.value.theme.primaryColor,
+      });
+    }
+
     onMounted(() => {
+      handerThemeColor();
       setTimeout(() => {
         watermarkContent = "New Mark";
-      }, 1000);
+      }, 100);
     });
     return {
       isMultiTab,

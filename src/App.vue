@@ -1,5 +1,5 @@
 <template>
-  <a-config-provider :locale="locale">
+  <a-config-provider :locale=locale>
     <router-view />
   </a-config-provider>
 </template>
@@ -10,13 +10,13 @@ import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useAppStore } from "@/store/modules/app";
 import { domTitle, setDocumentTitle } from "@/utils/domUtil";
-
 export default defineComponent({
   name: "App",
   setup() {
     const { t, getLocaleMessage } = useI18n();
     const appStore = useAppStore();
     const route = useRoute();
+
     console.log("app.vue...");
     const locale = computed(() => {
       const { title } = route.meta;
@@ -31,6 +31,7 @@ export default defineComponent({
       }
       return document.body;
     };
+
     return {
       getPopupContainer,
       locale,
@@ -39,8 +40,9 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="less">
+// @import 'ant-design-vue/dist/antd.variable.less';
 #app {
-  height: 100%;
+  height: 80vh;
 }
 </style>

@@ -7,7 +7,7 @@ import { notification } from "ant-design-vue";
 import { VueAxios } from "./axios";
 import { ACCESS_TOKEN } from "@/store/store-types";
 
-const user = useUserStore(store);
+const userStore = useUserStore(store);
 // 创建 axios 实例
 const request = axios.create({
   // API 请求的默认前缀
@@ -36,10 +36,10 @@ const errorHandler = (error) => {
         description: "Authorization verification failed",
       });
       if (token) {
-        user.Logout().then(() => {
+        userStore.Logout().then(() => {
           setTimeout(() => {
             window.location.reload();
-          }, 1500);
+          }, 300);
         });
       }
     }

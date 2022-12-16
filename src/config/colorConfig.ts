@@ -3,10 +3,6 @@
 // let lessNodesAppended
 const colorList = [
   {
-    key: '拂晓蓝（默认）',
-    color: config.primaryColor
-  },
-  {
     key: '薄暮',
     color: '#F5222D'
   },
@@ -25,6 +21,10 @@ const colorList = [
   {
     key: '极光绿',
     color: '#52C41A'
+  },
+  {
+    key: '拂晓蓝（默认）',
+    color: config.primaryColor
   },
   {
     key: '极客蓝',

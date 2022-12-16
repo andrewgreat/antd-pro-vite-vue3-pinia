@@ -6,7 +6,7 @@
     :closable="false"
   >
     <template #handle>
-      <div class="ant-pro-setting-drawer-handle" @click="handleShowDrawer">
+      <div class="ant-setting-drawer-handle" @click="handleShowDrawer">
         <SettingOutlined v-if="!visible" />
         <CloseOutlined v-else />
       </div>
@@ -34,7 +34,7 @@
           </div>
         </a-tooltip>
       </div>
-      <a-divider />
+
       <div class="setting-drawer-index-item">
         <h3 class="setting-drawer-index-title">主题色</h3>
         <div style="height: 20px">
@@ -44,8 +44,13 @@
             :key="index"
           >
             <template #title>{{ item.key }}</template>
-            <a-tag :color="item.color" @click="changeColor(item.color)">
-              <CheckOutlined v-if="modelValue.primaryColor === item.color" />
+            <a-tag
+              :color="item.color"
+              @click="changeColor(item.color, 'primaryColor')"
+            >
+              <CheckOutlined
+                v-if="modelValue.theme.primaryColor === item.color"
+              />
             </a-tag>
           </a-tooltip>
           <!-- 自定义颜色 todo...-->
@@ -207,11 +212,13 @@ import { useAppStore } from "@/store/modules/app";
 import { message } from "ant-design-vue";
 import useClipboard from "vue-clipboard3";
 import colorConfig from "@/config/colorConfig";
+// import { toggleTheme } from "@zougt/vite-plugin-theme-preprocessor/dist/browser-utils.js";
+import { changeTheme } from "@/utils/theme";
 
 type CheckedType = boolean | string | number;
 type ConfType = "layout" | "fixedHeader" | "fixSiderbar" | string;
 
-const app = useAppStore();
+const appStore = useAppStore();
 const { toClipboard } = useClipboard();
 
 const props = defineProps<{
@@ -224,17 +231,17 @@ const themeList = [
   {
     tips: "暗色主题风格",
     value: "dark",
-    image: "/public/images/dark.svg",
+    image: "/images/dark.svg",
   },
   {
     tips: "亮色主题风格",
     value: "light",
-    image: "/public/images/light.svg",
+    image: "/images/light.svg",
   },
   {
     tips: "暗黑模式",
     value: "realDark",
-    image: "/public/images/realDark.svg",
+    image: "/images/realDark.svg",
   },
 ];
 
@@ -245,19 +252,23 @@ const layoutList = [
   {
     tips: "侧边栏导航",
     value: "side",
-    image: "/public/images/sidemenu.svg",
+    image: "/images/sidemenu.svg",
   },
   {
     tips: "顶部栏导航",
     value: "top",
-    image: "/public/images/topmenu.svg",
+    image: "/images/topmenu.svg",
   },
   {
     tips: "混合菜单布局",
     value: "mix",
-    image: "/public/images/topmenu.svg",
+    image: "/images/mixmenu.svg",
   },
 ];
+
+const themes = ref({
+  primaryColor: appStore.theme.primaryColor,
+});
 
 const visible = ref<boolean>(false);
 const handleShowDrawer = () => {
@@ -284,12 +295,21 @@ const updateConfs = (vals: {}) => {
 
 const handleMenuTheme = (theme: string) => {
   updateConf(theme, "navTheme");
-  app.navTheme = theme;
+  appStore.navTheme = theme;
 };
 
-const changeColor = (color: string) => {
-  updateConf(color, "primaryColor");
-  app.primaryColor = color;
+const changeColor = (color: string, themeType: string) => {
+  themes.value.primaryColor = color;
+  changeTheme(themes.value);
+  const newVal = {
+    ...toRaw(props.modelValue),
+    theme: {
+      [`${themeType}`]: color,
+    },
+  };
+  // console.log("newConf", newVal);
+  emit("update:modelValue", newVal);
+  appStore.theme.primaryColor = color;
 };
 
 const handleLayout = (layout: string) => {
@@ -301,18 +321,18 @@ const handleLayout = (layout: string) => {
     configs.fixSiderbar = false;
   }
   updateConfs(configs);
-  app.layout = layout;
-  app.fixSiderbar = configs.fixSiderbar;
+  appStore.layout = layout;
+  appStore.fixSiderbar = configs.fixSiderbar;
 };
 
 const contentWidthChange = (type) => {
   updateConf(type, "contentWidth");
-  app.contentWidth = type;
+  appStore.contentWidth = type;
 };
 
 const handleFixedHeader = (fixed: boolean) => {
   updateConf(fixed, "fixedHeader");
-  app.fixedHeader = fixed;
+  appStore.fixedHeader = fixed;
 };
 
 const handleFixSiderbar = (fixed: boolean) => {
@@ -321,11 +341,11 @@ const handleFixSiderbar = (fixed: boolean) => {
     fixSiderbar = false;
   }
   updateConf(fixSiderbar, "fixSiderbar");
-  app.fixSiderbar = fixed;
+  appStore.fixSiderbar = fixed;
 };
 const handleSplitMenus = (split: boolean) => {
   updateConf(split, "splitMenus");
-  app.splitMenus = split;
+  appStore.splitMenus = split;
 };
 
 const doCopy = () => {
@@ -353,8 +373,9 @@ const doCopy = () => {
 };
 </script>
 
-<style lang="less" scoped>
-.ant-pro-setting-drawer-handle {
+<style lang="less">
+@import "ant-design-vue/dist/antd.variable.less";
+.ant-setting-drawer-handle {
   position: absolute;
   top: 240px;
   right: 300px;
@@ -405,17 +426,7 @@ const doCopy = () => {
       }
     }
   }
-  .setting-checkbox-item {
-    position: relative;
-    width: 44px;
-    height: 36px;
-    margin-right: 16px;
-    overflow: hidden;
-    background-color: #ebeef1;
-    border-radius: 2px;
-    box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 18%);
-    cursor: pointer;
-  }
+
   .setting-drawer-theme-color-colorBlock {
     width: 20px;
     height: 20px;
@@ -432,46 +443,6 @@ const doCopy = () => {
     i {
       font-size: 14px;
     }
-  }
-}
-.setting-drawer-index-handle {
-  position: absolute;
-  top: 240px;
-  background: @primary-color;
-  width: 48px;
-  height: 48px;
-  right: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  pointer-events: auto;
-  z-index: 1001;
-  text-align: center;
-  font-size: 16px;
-  border-radius: 4px 0 0 4px;
-
-  i {
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-  }
-}
-
-.setting-drawer-theme-color-colorBlock {
-  width: 20px;
-  height: 20px;
-  border-radius: 2px;
-  float: left;
-  cursor: pointer;
-  margin-right: 8px;
-  padding-left: 0px;
-  padding-right: 0px;
-  text-align: center;
-  color: #fff;
-  font-weight: 700;
-
-  i {
-    font-size: 14px;
   }
 }
 </style>

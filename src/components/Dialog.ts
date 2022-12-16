@@ -64,7 +64,7 @@ export default (app) => {
               visible.value = false;
               emit("close");
               emit("ok");
-              // dialogInstance.$destroy();
+              dialogInstance.$.appContext.app.unmount;
             }
           );
         };

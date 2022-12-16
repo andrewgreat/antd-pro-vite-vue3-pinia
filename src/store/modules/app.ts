@@ -12,12 +12,14 @@ export const useAppStore = defineStore("appStore", {
       splitMenus: settings.splitMenus,
       navTheme: settings.navTheme,
       layout: settings.layout,
+      theme:{
+        primaryColor: settings.primaryColor,
+      },
       contentWidth:
         settings.layout === "side" ? "Fluid" : settings.contentWidth,
       fixedHeader: settings.fixedHeader,
       fixSiderbar: settings.fixSiderbar,
       autoHideHeader: settings.autoHideHeader,
-      primaryColor: settings.primaryColor,
       colorWeak: settings.colorWeak,
       multiTab: settings.multiTab,
       lang: "zh-CN",
@@ -28,7 +30,7 @@ export const useAppStore = defineStore("appStore", {
     // 开启持久化
     // 选择存储方式和内容
     storage: localStorage,
-    paths: ["lang"],
+    paths: ["lang","theme"],
   },
   getters: {
 
