@@ -20,7 +20,12 @@ export default defineComponent({
     const activeKey = ref<string>("");
 
     const selectedLastPath = function () {
-      activeKey.value = tabPanes.value[tabPanes.value.length - 1].key;
+      if (tabPanes.value.find((pane) => pane.key === tabsStore.activeKey)) {
+        activeKey.value = tabsStore.activeKey;
+      } else {
+        activeKey.value = tabPanes.value[tabPanes.value.length - 1].key;
+        tabsStore.activeKey = activeKey.value;
+      }
     };
 
     const remove = function (targetKey: string | MouseEvent) {
@@ -167,6 +172,7 @@ export default defineComponent({
           };
           tabPanes.value.push(pane);
           tabsStore.pushTabs(pane);
+          tabsStore.activeKey = activeKey.value;
         }
       }
     );
