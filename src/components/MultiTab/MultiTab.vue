@@ -179,6 +179,7 @@ export default defineComponent({
 
     watch(activeKey, (newPathKey) => {
       router.push({ path: newPathKey });
+      tabsStore.activeKey = activeKey.value;
     });
 
     // render
