@@ -212,7 +212,6 @@ import { useAppStore } from "@/store/modules/app";
 import { message } from "ant-design-vue";
 import useClipboard from "vue-clipboard3";
 import colorConfig from "@/config/colorConfig";
-// import { toggleTheme } from "@zougt/vite-plugin-theme-preprocessor/dist/browser-utils.js";
 import { changeTheme } from "@/utils/theme";
 
 type CheckedType = boolean | string | number;

@@ -2,6 +2,7 @@ import setCustomTheme from "@setCustomTheme";
 import Color from "color";
 
 /**
+ * npx z-theme ins gradientReplacer 查看可用属性，targetValueReplacer同理
 const ThemeOpt = {
   primaryColor: "rgb(32, 151, 243)",
   otherColor: {
@@ -22,11 +23,11 @@ const ThemeOpt = {
 export interface ThemeType {
   primaryColor: string;
   otherColor?: {
-    layoutHeaderBackground?: string;
+    layoutHeaderBackground?: string,
     // 对应less变量 @alert-success-bg-color 的值，让它单独切换，不跟随主题色
-    alertSuccessBgColor?: string;
+    alertSuccessBgColor?: string,
   }; //其他非主题色
-  radius?: string; //圆角
+  radius?: string, //圆角
 }
 
 interface ThemeOptType {
