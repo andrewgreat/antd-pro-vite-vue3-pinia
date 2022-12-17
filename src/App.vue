@@ -1,5 +1,5 @@
 <template>
-  <a-config-provider :locale="locale">
+  <a-config-provider :locale="antLocale">
     <router-view />
   </a-config-provider>
 </template>
@@ -18,7 +18,7 @@ export default defineComponent({
     const route = useRoute();
 
     console.log("app.vue...");
-    const locale = computed(() => {
+    const antLocale = computed(() => {
       const { title } = route.meta;
       // @ts-ignore
       title && setDocumentTitle(`${t(title)}-${domTitle}`);
@@ -34,7 +34,7 @@ export default defineComponent({
 
     return {
       getPopupContainer,
-      locale,
+      antLocale,
     };
   },
 });
@@ -42,7 +42,7 @@ export default defineComponent({
 
 <style lang="less">
 // @import 'ant-design-vue/dist/antd.variable.less';
-#app {
-  height: 80vh;
-}
+// #app {
+//   height: 80vh;
+// }
 </style>
