@@ -1,5 +1,7 @@
 import { createApp, getCurrentInstance, onMounted, ref, h } from "vue";
-import { Modal } from "ant-design-vue";
+import { Modal, ConfigProvider } from "ant-design-vue";
+import { getAntLocale } from "@/locales";
+import { useAppStore } from "@/store/modules/app";
 
 export default (app) => {
   function dialog(
@@ -33,7 +35,7 @@ export default (app) => {
     };
 
     const dialogInstance = createApp({
-      name: "dialog",
+      name: "Dialog",
       components: {
         component,
       },
@@ -41,8 +43,10 @@ export default (app) => {
         const instance = getCurrentInstance();
         const proxy = instance?.proxy;
 
+        const appStore = useAppStore();
         const _component = ref<typeof component | null>(null);
         const visible = ref<boolean>(true);
+        const antLocale = getAntLocale(appStore.lang);
 
         onMounted(() => {
           _component.value = proxy?.$refs._component;
@@ -96,7 +100,11 @@ export default (app) => {
             ...componentProps,
           };
 
-          return h(Modal, ModalProps, [h(component, ComponentProps)]);
+          return h("div", null, [
+            h(ConfigProvider, { locale: antLocale }, [
+              h(Modal, ModalProps, [h(component, ComponentProps)]),
+            ]),
+          ]);
         };
 
         return () => render();

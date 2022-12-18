@@ -1,4 +1,4 @@
-import { createI18n, useI18n } from "vue-i18n";
+import { createI18n } from "vue-i18n";
 import storage from "store";
 
 console.log("main.ts...", "i18n");
@@ -61,7 +61,11 @@ export function loadLanguageAsync(lang = defaultLang) {
 }
 
 export function t(key) {
-  return useI18n().t(`${key}`);
+  return i18n.global.t(`${key}`);
+}
+
+export function getAntLocale(lang) {
+  return i18n.global.getLocaleMessage(lang).antLocale;
 }
 
 export default i18n;
