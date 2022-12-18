@@ -5,9 +5,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
+import { ConfigProvider } from "ant-design-vue";
 import { useAppStore } from "@/store/modules/app";
 import { domTitle, setDocumentTitle } from "@/utils/domUtil";
 export default defineComponent({
@@ -31,7 +32,11 @@ export default defineComponent({
       }
       return document.body;
     };
-
+    onMounted(() => {
+      ConfigProvider.config({
+        theme: { primaryColor: appStore.theme.primaryColor },
+      });
+    });
     return {
       getPopupContainer,
       antLocale,
@@ -41,8 +46,5 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-// @import 'ant-design-vue/dist/antd.variable.less';
-// #app {
-//   height: 80vh;
-// }
+@import "./style/index.less";
 </style>

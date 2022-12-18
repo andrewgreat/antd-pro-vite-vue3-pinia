@@ -11,9 +11,9 @@
         <CloseOutlined v-else />
       </div>
     </template>
-    <div class="setting-drawer-index-content">
-      <h3 class="setting-drawer-index-title">整体风格设置</h3>
-      <div class="setting-drawer-index-blockChecbox">
+    <div class="ant-setting-drawer-index-content">
+      <h3 class="ant-setting-drawer-index-title">整体风格设置</h3>
+      <div class="ant-setting-drawer-index-blockChecbox">
         <a-tooltip
           v-for="(item, index) in themeList"
           :key="index"
@@ -23,23 +23,23 @@
             <span>{{ item.tips }}</span>
           </template>
           <div
-            class="setting-drawer-index-item"
+            class="ant-setting-drawer-index-item"
             @click="handleMenuTheme(item.value)"
           >
             <img :src="item.image" :alt="item.value" />
             <check-outlined
               v-if="modelValue.navTheme === item.value"
-              class="setting-drawer-index-selectIcon"
+              class="ant-setting-drawer-index-selectIcon"
             />
           </div>
         </a-tooltip>
       </div>
 
-      <div class="setting-drawer-index-item">
-        <h3 class="setting-drawer-index-title">主题色</h3>
+      <div class="ant-setting-drawer-index-item">
+        <h3 class="ant-setting-drawer-index-title">主题色</h3>
         <div style="height: 20px">
           <a-tooltip
-            class="setting-drawer-theme-color-colorBlock"
+            class="ant-setting-drawer-theme-color-colorBlock"
             v-for="(item, index) in colorList"
             :key="index"
           >
@@ -57,8 +57,8 @@
         </div>
       </div>
       <a-divider />
-      <h3 class="setting-drawer-index-title">导航模式</h3>
-      <div class="setting-drawer-index-blockChecbox">
+      <h3 class="ant-setting-drawer-index-title">导航模式</h3>
+      <div class="ant-setting-drawer-index-blockChecbox">
         <a-tooltip
           v-for="(item, index) in layoutList"
           :key="index"
@@ -68,13 +68,13 @@
             <span>{{ item.tips }}</span>
           </template>
           <div
-            class="setting-drawer-index-item"
+            class="ant-setting-drawer-index-item"
             @click="handleLayout(item.value)"
           >
             <img :src="item.image" :alt="item.value" />
             <check-outlined
               v-if="modelValue.layout === item.value"
-              class="setting-drawer-index-selectIcon"
+              class="ant-setting-drawer-index-selectIcon"
             />
           </div>
         </a-tooltip>
@@ -207,12 +207,11 @@
 </template>
 
 <script setup name="SettingDrawer" lang="ts">
-import { ref, toRaw } from "vue";
+import { ref, toRaw, reactive } from "vue";
 import { useAppStore } from "@/store/modules/app";
-import { message } from "ant-design-vue";
+import { ConfigProvider, message } from "ant-design-vue";
 import useClipboard from "vue-clipboard3";
 import colorConfig from "@/config/colorConfig";
-import { changeTheme } from "@/utils/theme";
 
 type CheckedType = boolean | string | number;
 type ConfType = "layout" | "fixedHeader" | "fixSiderbar" | string;
@@ -265,7 +264,7 @@ const layoutList = [
   },
 ];
 
-const themes = ref({
+const themeState = reactive({
   primaryColor: appStore.theme.primaryColor,
 });
 
@@ -298,8 +297,11 @@ const handleMenuTheme = (theme: string) => {
 };
 
 const changeColor = (color: string, themeType: string) => {
-  themes.value.primaryColor = color;
-  changeTheme(themes.value);
+  Object.assign(themeState, { [themeType]: color });
+  ConfigProvider.config({
+    prefixCls: 'ant',
+    theme: themeState,
+  });
   const newVal = {
     ...toRaw(props.modelValue),
     theme: {
@@ -308,7 +310,7 @@ const changeColor = (color: string, themeType: string) => {
   };
   // console.log("newConf", newVal);
   emit("update:modelValue", newVal);
-  appStore.theme.primaryColor = color;
+  Object.assign(appStore.theme, { [themeType]: color });
 };
 
 const handleLayout = (layout: string) => {
@@ -363,7 +365,7 @@ const doCopy = () => {
   toClipboard(text)
     .then((msg) => {
       console.log("copy", msg);
-      message.success("拷贝设置成功 src/config/defaultSettings.js");
+      message.success("拷贝设置成功 src/config/defaultSettings.ts");
     })
     .catch((err) => {
       console.log("copy.err", err);
@@ -372,76 +374,75 @@ const doCopy = () => {
 };
 </script>
 
-<style lang="less">
-@import "ant-design-vue/dist/antd.variable.less";
+<style lang="less" scoped>
 .ant-setting-drawer-handle {
-  position: absolute;
-  top: 240px;
-  right: 300px;
-  z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  font-size: 16px;
-  text-align: center;
-  background: @primary-color;
-  border-radius: 4px 0 0 4px;
-  cursor: pointer;
-  pointer-events: auto;
-
-  > span {
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-  }
-}
-
-.setting-drawer-index-content {
-  .setting-drawer-index-blockChecbox {
+    position: absolute;
+    top: 240px;
+    right: 300px;
+    z-index: 0;
     display: flex;
-
-    .setting-drawer-index-item {
-      margin-right: 16px;
-      position: relative;
-      border-radius: 4px;
-      cursor: pointer;
-
-      img {
-        width: 48px;
-      }
-
-      .setting-drawer-index-selectIcon {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        padding-top: 15px;
-        padding-left: 24px;
-        height: 100%;
-        color: #1890ff;
-        font-size: 14px;
-        font-weight: 700;
-      }
-    }
-  }
-
-  .setting-drawer-theme-color-colorBlock {
-    width: 20px;
-    height: 20px;
-    border-radius: 2px;
-    float: left;
-    cursor: pointer;
-    margin-right: 8px;
-    padding-left: 0px;
-    padding-right: 0px;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    font-size: 16px;
     text-align: center;
-    color: #fff;
-    font-weight: 700;
-
-    i {
-      font-size: 14px;
+    background: var(--ant-primary-color);
+    border-radius: 4px 0 0 4px;
+    cursor: pointer;
+    pointer-events: auto;
+  
+    > span {
+      color: rgb(255, 255, 255);
+      font-size: 20px;
     }
   }
-}
+  
+  .ant-setting-drawer-index-content {
+    .ant-setting-drawer-index-blockChecbox {
+      display: flex;
+  
+      .ant-setting-drawer-index-item {
+        margin-right: 16px;
+        position: relative;
+        border-radius: 4px;
+        cursor: pointer;
+  
+        img {
+          width: 48px;
+        }
+  
+        .ant-setting-drawer-index-selectIcon {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 100%;
+          padding-top: 15px;
+          padding-left: 24px;
+          height: 100%;
+          color: @primary-color;
+          font-size: 14px;
+          font-weight: 700;
+        }
+      }
+    }
+  
+    .ant-setting-drawer-theme-color-colorBlock {
+      width: 20px;
+      height: 20px;
+      border-radius: 2px;
+      float: left;
+      cursor: pointer;
+      margin-right: 8px;
+      padding-left: 0px;
+      padding-right: 0px;
+      text-align: center;
+      color: #fff;
+      font-weight: 700;
+  
+      i {
+        font-size: 14px;
+      }
+    }
+  }
 </style>

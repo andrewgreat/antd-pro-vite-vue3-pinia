@@ -37,9 +37,9 @@ export default defineComponent({
         <a-menu class={['menu', 'ant-pro-header-menu']} selectedKeys={[currentLang]} onClick={changeLang}>
           {locales.map(locale => (
             <a-menu-item key={locale}>
-            <span role="img" aria-label={languageLabels[locale]}>
-              {languageIcons[locale]}{' '}
-            </span>
+              <span role="img" aria-label={languageLabels[locale]}>
+                {languageIcons[locale]}{' '}
+              </span>
               {languageLabels[locale]}
             </a-menu-item>
           ))}
@@ -47,12 +47,11 @@ export default defineComponent({
       )
       return (
         <a-dropdown overlay={langMenu} placement="bottomRight">
-          <a-tooltip title={t('navBar.lang')}>
-            <span class={prefixCls}>
-              <global-outlined />
-            </span>
-          </a-tooltip>
+          <span class={prefixCls}>
+            <global-outlined />
+          </span>
         </a-dropdown>
+
       )
     }
     return () => render()

@@ -1,3 +1,4 @@
+import type { App } from "vue";
 import { createI18n } from "vue-i18n";
 import storage from "store";
 
@@ -17,14 +18,7 @@ const messages = {
   },
 };
 
-const i18n = createI18n({
-  globalInjection: true,
-  legacy: false,
-  silentTranslationWarn: true,
-  locale: defaultLang,
-  fallbackLocale: defaultLang,
-  messages,
-});
+let i18n;
 
 const loadedLanguages = [defaultLang];
 
@@ -50,7 +44,7 @@ export function loadLanguageAsync(lang = defaultLang) {
           const message = msg.default;
           i18n.global.setLocaleMessage(lang, message);
           loadedLanguages.push(lang);
-          console.log(message);
+          // console.log(message);
           return setI18nLanguage(lang);
         });
       }
@@ -58,6 +52,20 @@ export function loadLanguageAsync(lang = defaultLang) {
     }
     return resolve(lang);
   });
+}
+
+export async function setupI18n(app: App) {
+  if (!i18n) {
+    i18n = createI18n({
+      globalInjection: true,
+      legacy: false,
+      silentTranslationWarn: true,
+      locale: defaultLang,
+      fallbackLocale: defaultLang,
+      messages,
+    });
+  }
+  app.use(i18n);
 }
 
 export function t(key) {

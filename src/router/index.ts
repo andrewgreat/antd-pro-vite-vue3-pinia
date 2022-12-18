@@ -1,3 +1,4 @@
+import type { App } from "vue";
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 import type { Router } from 'vue-router';
 import 'nprogress/css/nprogress.css'
@@ -19,4 +20,7 @@ router.push = function push(location: any) {
 //
 // setupAfterEach(router)
 
+export function setupRouter(app: App<Element>) {
+  app.use(router);
+}
 export default router;

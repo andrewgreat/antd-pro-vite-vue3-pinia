@@ -1,20 +1,18 @@
-@import '~ant-design-vue/dist/antd.variable.less';
-
-.ant-pro-global-header-index-right {
+.ant-global-header-index-right {
   margin-right: 8px;
 
-  &.ant-pro-global-header-index-dark {
-    .ant-pro-global-header-index-action {
+  &.ant-global-header-index-dark {
+    .ant-global-header-index-action {
       color: hsl(0deg 0% 100% / 85%);
 
       &:hover {
-        background: #1890ff;
+        background: @primary-color;
       }
     }
   }
 
-  .ant-pro-account-avatar {
-    .antd-pro-global-header-index-avatar {
+  .ant-account-avatar {
+    .ant-global-header-index-avatar {
       margin: ~'calc((@{layout-header-height} - 24px) / 2)' 0;
       margin-right: 8px;
       color: @primary-color;

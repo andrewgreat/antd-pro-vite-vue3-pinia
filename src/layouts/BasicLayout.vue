@@ -99,7 +99,6 @@ import RightContent from "@/components/GlobalHeader/RightContent.vue";
 import ProGlobalFooter from "@/components/GlobalFooter/index.vue";
 import SettingDrawer from "@/components/SettingDrawer/index.vue";
 import RouteView from "./RouteView.vue";
-import { changeTheme } from "@/utils/theme";
 
 export default defineComponent({
   name: "BasicLayout",
@@ -186,9 +185,9 @@ export default defineComponent({
       }, 1000);
     }
     function handerThemeColor() {
-      changeTheme({
-        primaryColor: settings.value.theme.primaryColor,
-      });
+      // changeTheme({
+      //   primaryColor: settings.value.theme.primaryColor,
+      // });
     }
 
     onMounted(() => {

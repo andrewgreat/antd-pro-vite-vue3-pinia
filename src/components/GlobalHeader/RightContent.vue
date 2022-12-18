@@ -26,7 +26,7 @@ export default defineComponent({
   props: {
     prefixCls: {
       type: String,
-      default: "ant-pro-global-header-index-action",
+      default: "ant-global-header-index-action",
     },
     isMobile: {
       type: Boolean,
@@ -48,8 +48,8 @@ export default defineComponent({
     const userStore = useUserStore();
     const wrpCls = computed(() => {
       return {
-        "ant-pro-global-header-index-right": true,
-        [`ant-pro-global-header-index-${
+        "ant-global-header-index-right": true,
+        [`ant-global-header-index-${
           props.isMobile || !props.topMenu ? "light" : props.theme
         }`]: true,
       };
@@ -68,5 +68,5 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+</style>
