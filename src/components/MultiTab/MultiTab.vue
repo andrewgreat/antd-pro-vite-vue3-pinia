@@ -1,11 +1,17 @@
 <script lang="tsx">
-import { defineComponent, ref, watch, getCurrentInstance, provide } from "vue";
+import {
+  defineComponent,
+  ref,
+  watch,
+  getCurrentInstance,
+} from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { message } from "ant-design-vue";
 import { useTabsStore } from "@/store/modules/tabs";
 import settings from "@/config/defaultSettings";
 import { TabPanesType } from "@/utils/types";
+import events from "./events";
 import "./index.less";
 
 export default defineComponent({
@@ -101,21 +107,23 @@ export default defineComponent({
     };
 
     const created = function () {
-      // provide 全局事件方法,用于页面内控制tab标签
-      provide("multiTab.open", (val) => {
+      // 全局事件方法,用于页面内控制tab标签
+      events.once("multiTab_open", (val) => {
         if (!val) {
           throw new Error(`multi-tab: open tab ${val} err`);
         }
+        // @ts-ignore
         activeKey.value = val;
       });
-      provide("multiTab.close", (val: any) => {
+      events.once("multiTab_close", (val) => {
         if (!val) {
           closeThat(activeKey.value);
           return;
         }
+        console.log("close", val);
         closeThat(val);
       });
-      provide("multiTab.rename", ({ key, name }) => {
+      events.once("multiTab_rename", ({ key, name }) => {
         console.log("rename", key, name);
         try {
           const item = tabPanes.value.find((pane) => pane.key === key);
@@ -151,7 +159,6 @@ export default defineComponent({
         tabPanes.value.push(pane);
         tabsStore.pushTabs(pane);
       }
-
       selectedLastPath();
     };
 

@@ -205,7 +205,6 @@
     </div>
   </a-drawer>
 </template>
-
 <script setup name="SettingDrawer" lang="ts">
 import { ref, toRaw, reactive } from "vue";
 import { useAppStore } from "@/store/modules/app";
@@ -397,12 +396,10 @@ const doCopy = () => {
       font-size: 20px;
     }
   }
-  
-  .ant-setting-drawer-index-content {
+    .ant-setting-drawer-index-content {
     .ant-setting-drawer-index-blockChecbox {
       display: flex;
-  
-      .ant-setting-drawer-index-item {
+        .ant-setting-drawer-index-item {
         margin-right: 16px;
         position: relative;
         border-radius: 4px;
@@ -411,8 +408,7 @@ const doCopy = () => {
         img {
           width: 48px;
         }
-  
-        .ant-setting-drawer-index-selectIcon {
+          .ant-setting-drawer-index-selectIcon {
           position: absolute;
           top: 0;
           right: 0;
@@ -420,14 +416,13 @@ const doCopy = () => {
           padding-top: 15px;
           padding-left: 24px;
           height: 100%;
-          color: @primary-color;
+          color: var(--ant-primary-color);
           font-size: 14px;
           font-weight: 700;
         }
       }
     }
-  
-    .ant-setting-drawer-theme-color-colorBlock {
+      .ant-setting-drawer-theme-color-colorBlock {
       width: 20px;
       height: 20px;
       border-radius: 2px;

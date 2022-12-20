@@ -5,10 +5,6 @@ import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import viteSvgIcons from "vite-plugin-svg-icons";
 import { getThemeVariables } from "ant-design-vue/dist/theme";
-import {
-  themePreprocessorPlugin,
-  themePreprocessorHmrPlugin,
-} from "@zougt/vite-plugin-theme-preprocessor";
 import { viteMockServe } from "vite-plugin-mock";
 import Components from "unplugin-vue-components/vite";
 import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
@@ -37,10 +33,6 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       ],
     },
     server: {
-      watch: {
-        // themePreprocessorHmrPlugin 热更新时必需的，希望监听setCustomTheme.js
-        ignored: ["!**/node_modules/**/setCustomTheme.js"],
-      },
       proxy: {
         // 选项写法
         "/api": {
@@ -58,7 +50,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
         less: {
           // DO NOT REMOVE THIS LINE
           javascriptEnabled: true,
-          // modifyVars: getThemeVariables(),
+          modifyVars: getThemeVariables(),
           // modifyVars: {
           //   hack: `true; @import 'ant-design-vue/dist/antd.less'`, // antd.dark.less
           // }
@@ -76,7 +68,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
         symbolId: "icon-[name]",
       }),
       Components({
-        resolvers: [AntDesignVueResolver()],
+        resolvers: [AntDesignVueResolver({ importStyle: "less"})],
       }),
       viteMockServe({
         mockPath: "./mock",
@@ -87,32 +79,6 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
           setupProdMockServer();
         `,
       }),
-      // 创建动态主题切换
-      themePreprocessorPlugin({
-        less: {
-          // 启用任意主题色模式
-          arbitraryMode: true,
-          // 默认的主题色，用于对其他颜色值形成对比值，通常与 src/theme/theme-vars.less 中的一个主题色相同，也可以不相同，就看是不是你想要的效果
-          defaultPrimaryColor: "#1890ff",
-          // 只需提供一组变量文件
-          multipleScopeVars: [
-            {
-              scopeName: "theme-default",
-              path: path.resolve("src/style/theme/theme-vars.less"),
-            },
-          ],
-          // css中不是由主题色变量生成的颜色，也让它抽取到主题css内，可以提高权重
-          includeStyleWithColors: [
-            {
-              color: "#ffffff",
-            },
-            {
-              color: ["transparent", "none"],
-            },
-          ],
-        },
-      }),
-      themePreprocessorHmrPlugin(),
     ],
   };
 };

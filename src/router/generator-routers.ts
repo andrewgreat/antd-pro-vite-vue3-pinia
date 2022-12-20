@@ -58,7 +58,7 @@ const constantRouterComponents = {
   BindingSettings: () => import('@/views/account/settings/Binding.vue'),
   NotificationSettings: () => import('@/views/account/settings/Notification.vue'),
 
-  // 'TestWork': () => import('@/views/dashboard/TestWork')
+  'TestWork': () => import('@/views/dashboard/TestWork.vue')
 }
 
 // 前端未找到页面路由（固定不用改）

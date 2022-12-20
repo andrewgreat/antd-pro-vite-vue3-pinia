@@ -12,7 +12,7 @@ export default function Initializer() {
   appStore.autoHideHeader = storage.get("auto_hide_header", defaultSettings.autoHideHeader);
   appStore.navTheme = storage.get("nav_theme", defaultSettings.navTheme);
   appStore.colorWeak = storage.get("color_weak", defaultSettings.colorWeak);
-  appStore.primaryColor = storage.get("primary_color", defaultSettings.primaryColor);
+  // appStore.theme.primaryColor = storage.get("primary_color", defaultSettings.primaryColor);
   appStore.multiTab = storage.get("multi_tab", defaultSettings.multiTab);
   appStore.splitMenus = storage.get("split_menus", defaultSettings.splitMenus);
   // store.commit('SET_TOKEN', storage.get(ACCESS_TOKEN))

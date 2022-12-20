@@ -502,6 +502,17 @@ const userNav = options => {
       }
     },
     {
+      name: 'testWork',
+      path: '/dashboard/testWork',
+      parentId: 1,
+      id: 3,
+      meta: {
+        title: '测试界面',
+        show: true
+      },
+      component: 'TestWork'
+    },
+    {
       name: 'Analysis',
       parentId: 1,
       id: 2,
