@@ -17,6 +17,6 @@ export default function Initializer() {
   appStore.splitMenus = storage.get("split_menus", defaultSettings.splitMenus);
   // store.commit('SET_TOKEN', storage.get(ACCESS_TOKEN))
 
-  appStore.setLang(storage.get("app_language", "en-US")).then(() => {});
+  // appStore.setLang(storage.get("app_language", "en-US")).then(() => {});
   // last step
 }

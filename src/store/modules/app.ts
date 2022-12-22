@@ -39,7 +39,6 @@ export const useAppStore = defineStore("appStore", {
     app_language(lang: string, antd = {}) {
       this.lang = lang;
       this._antLocale = antd;
-      storage.set("app_language", lang);
     },
     setLang(lang: string) {
       return new Promise((resolve, reject) => {
