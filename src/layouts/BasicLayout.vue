@@ -7,7 +7,6 @@
     v-bind="settings"
     :loading="loading"
     :breadcrumb="{ routes: breadcrumb }"
-    iconfont-url="//at.alicdn.com/t/font_2804900_nzigh7z84gc.js"
     :collapsedButtonRender="false"
     :locale="t"
   >
@@ -191,7 +190,6 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      handerThemeColor();
       setTimeout(() => {
         watermarkContent = "New Mark";
       }, 100);

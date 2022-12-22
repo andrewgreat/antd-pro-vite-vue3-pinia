@@ -502,17 +502,6 @@ const userNav = options => {
       }
     },
     {
-      name: 'testWork',
-      path: '/dashboard/testWork',
-      parentId: 1,
-      id: 3,
-      meta: {
-        title: '测试界面',
-        show: true
-      },
-      component: 'TestWork'
-    },
-    {
       name: 'Analysis',
       parentId: 1,
       id: 2,
@@ -520,7 +509,7 @@ const userNav = options => {
         title: 'menu.dashboard.analysis',
         show: true
       },
-      component: 'Analysis',
+      component:'Analysis',
       path: '/dashboard/analysis'
     },
 
@@ -693,7 +682,17 @@ const userNav = options => {
       },
       component: 'ProfileAdvanced'
     },
-
+    {
+      name: 'testWork',
+      path: '/dashboard/testWork',
+      parentId: 10018,
+      id: 10020,
+      meta: {
+        title: '测试界面',
+        show: true
+      },
+      component: 'TestWork'
+    },
     // result
     {
       name: 'result',
@@ -865,7 +864,33 @@ const userNav = options => {
         show: false
       },
       component: 'NotificationSettings'
-    }
+    },
+    {
+      path: '/other',
+      name: 'otherPage',
+      parentId: 0,
+      id: 10200,
+      component: 'RouteView',
+      meta: { title: '其他组件', icon: 'slack-outlined', permission: [ 'dashboard' ] },
+      redirect: '/other/list/tree-list'
+    },
+    {
+      path: '/other/list',
+      name: 'bizLayout',
+      parentId: 10200,
+      id: 10201,
+      component: 'RouteView',
+      meta: { title: '业务布局', icon: 'layout-outlined', permission: [ 'support' ] },
+      redirect: '/other/list/tree-list'
+    },
+    {
+      path: '/other/list/tree-list',
+      name: 'TreeList',
+      parentId: 10201,
+      id: 10211,
+      component: () => '/other/TreeList',
+      meta: { title: '树目录表格', keepAlive: true }
+    },
   ]
   const json = builder(nav,null)
   // console.log('json', json)

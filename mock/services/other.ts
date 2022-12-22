@@ -986,7 +986,7 @@ export default [
   {
     url: '/api/role',
     method: 'get',
-    timeout: 1000,
+    timeout: 200,
     response: role,
   },
   {

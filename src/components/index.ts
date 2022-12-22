@@ -17,7 +17,7 @@ import AvatarList from "@/components/AvatarList/index";
 import Ellipsis from "@/components/Ellipsis";
 import FooterToolbar from "@/components/FooterToolbar";
 import NumberInfo from "@/components/NumberInfo/index";
-// import Tree from '@/components/Tree/Tree'
+import ATree from "@/components/Tree/Tree";
 import Trend from "@/components/Trend/Trend.vue";
 import STable from "@/components/Table";
 import MultiTab from "@/components/MultiTab";
@@ -46,7 +46,7 @@ export {
   Ellipsis,
   FooterToolbar,
   NumberInfo,
-  // Tree,
+  ATree,
   STable,
   MultiTab,
   // IconSelector,

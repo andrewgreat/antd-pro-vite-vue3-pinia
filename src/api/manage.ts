@@ -43,7 +43,7 @@ export function getPermissions (parameter) {
   })
 }
 
-export function getOrgTree (parameter) {
+export function getOrgTree (parameter={}) {
   return request({
     url: api.orgTree,
     method: 'get',
