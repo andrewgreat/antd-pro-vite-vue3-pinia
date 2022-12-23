@@ -875,6 +875,14 @@ const userNav = options => {
       redirect: '/other/list/tree-list'
     },
     {
+      path: '/other/icon-selector',
+      name: 'TestIconSelect',
+      parentId: 10200,
+      id: 10202,
+      component: '/other/IconSelectorView',
+      meta: { title: '图标选择', icon: 'tool-outlined', keepAlive: true, permission: [ 'dashboard' ] }
+    },
+    {
       path: '/other/list',
       name: 'bizLayout',
       parentId: 10200,
@@ -888,7 +896,7 @@ const userNav = options => {
       name: 'TreeList',
       parentId: 10201,
       id: 10211,
-      component: () => '/other/TreeList',
+      component: '/other/TreeList',
       meta: { title: '树目录表格', keepAlive: true }
     },
   ]

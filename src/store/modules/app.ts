@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import storage from "store";
 import store from "@/store";
 import settings from "@/config/defaultSettings";
 import { loadLanguageAsync } from "@/locales";
@@ -12,7 +11,7 @@ export const useAppStore = defineStore("appStore", {
       splitMenus: settings.splitMenus,
       navTheme: settings.navTheme,
       layout: settings.layout,
-      theme:{
+      theme: {
         primaryColor: settings.primaryColor,
       },
       contentWidth:
@@ -22,7 +21,7 @@ export const useAppStore = defineStore("appStore", {
       autoHideHeader: settings.autoHideHeader,
       colorWeak: settings.colorWeak,
       multiTab: settings.multiTab,
-      lang: "zh-CN",
+      lang: settings.lang,
       _antLocale: {},
     };
   },
@@ -30,11 +29,9 @@ export const useAppStore = defineStore("appStore", {
     // 开启持久化
     // 选择存储方式和内容
     storage: localStorage,
-    paths: ["lang","theme"],
+    paths: ["lang", "theme"],
   },
-  getters: {
-
-  },
+  getters: {},
   actions: {
     app_language(lang: string, antd = {}) {
       this.lang = lang;
@@ -54,7 +51,6 @@ export const useAppStore = defineStore("appStore", {
     },
   },
 });
-
 
 export function useAppStoreWithOut() {
   return useAppStore(store);
