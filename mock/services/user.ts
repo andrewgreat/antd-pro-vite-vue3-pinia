@@ -899,6 +899,44 @@ const userNav = options => {
       component: '/other/TreeList',
       meta: { title: '树目录表格', keepAlive: true }
     },
+    {
+      path: '/other/list/edit-table',
+      name: 'EditList',
+      parentId: 10201,
+      id: 10212,
+      component: '/other/TableInnerEditList',
+      meta: { title: '内联编辑表格', keepAlive: true }
+    },
+    {
+      path: '/other/list/user-list',
+      name: 'UserList',
+      parentId: 10201,
+      id: 10213,
+      component: '/other/UserList',
+      meta: { title: '用户列表', keepAlive: true }
+    },
+    {
+      path: '/other/list/role-list',
+      name: 'RoleList',
+      parentId: 10201,
+      id: 10214,
+      component:  '/other/RoleList',
+      meta: { title: '角色列表', keepAlive: true }
+    },
+    // {
+    //   path: '/other/list/system-role',
+    //   name: 'SystemRole',
+    //   component: () => import('@/views/role/RoleList'),
+    //   meta: { title: '角色列表2', keepAlive: true }
+    // },
+    {
+      path: '/other/list/permission-list',
+      name: 'PermissionList',
+      parentId: 10201,
+      id: 10216,
+      component:  '/other/PermissionList',
+      meta: { title: '权限列表', keepAlive: true }
+    }
   ]
   const json = builder(nav,null)
   // console.log('json', json)

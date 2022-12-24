@@ -22,8 +22,8 @@ export default {
   message: '-',
 
   'layouts.usermenu.dialog.title': '信息',
-  'layouts.usermenu.dialog.content': '您确定要注销吗？',
-  'layouts.userLayout.title': 'Ant Design 是西湖区最具影响力的 Web 设计规范',
+  'layouts.usermenu.dialog.content': '您確定要註銷嗎？',
+  'layouts.userLayout.title': 'Ant Design 是西湖區最具影響力的 Web 設計規範',
   ...components,
   ...global,
   ...menu,

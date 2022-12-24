@@ -333,7 +333,7 @@ export default defineComponent({
         <a-table
           { ...renderProps }
           v-slots={{
-            bodyCell: ({column, record, index, text}) =><span>{ renderSlot(column,record,text,index) }</span>
+            bodyCell: ({column, record, index, text}) =><>{ renderSlot(column,record,text,index) }</>
           }}
            onChange={loadData}
            onExpand={ (expanded, record) => { emit('expand', expanded, record) } }

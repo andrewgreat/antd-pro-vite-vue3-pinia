@@ -25,7 +25,6 @@ export default defineComponent({
   setup() {
     const currentSelectedIcon = ref("pause-circle-outlined");
     function handleIconChange(icon) {
-      console.log("change Icon", icon);
       message.info(`选中图标<${icon} />`)
     }
     function changeIcon(type) {

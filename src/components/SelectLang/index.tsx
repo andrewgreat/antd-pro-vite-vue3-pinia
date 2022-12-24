@@ -12,19 +12,19 @@ export default defineComponent({
   },
   setup(props) {
     const { t } = useI18n()
-    const locales = ['zhCN', 'zhTW', 'enUS', 'ptBR']
+    const locales = ['zh-CN', 'zh-TW', 'en-US', 'pt-BR']
     const languageLabels = {
-      'zhCN': '简体中文',
-      'zhTW': '繁體中文',
-      'enUS': 'English',
-      'ptBR': 'Português'
+      'zh-CN': '简体中文',
+      'zh-TW': '繁體中文',
+      'en-US': 'English',
+      'pt-BR': 'Português'
     }
 
     const languageIcons = {
-      'zhCN': '🇨🇳',
-      'zhTW': '🇭🇰',
-      'enUS': '🇺🇸',
-      'ptBR': '🇧🇷'
+      'zh-CN': '🇨🇳',
+      'zh-TW': '🇭🇰',
+      'en-US': '🇺🇸',
+      'pt-BR': '🇧🇷'
     }
 
     const { currentLang, setLang } = i18n

@@ -27,6 +27,6 @@ export default {
   homePage: '/dashboard/workplace',
   pwa: false,
   iconfontUrl: '',
-  lang:'zhCN',
+  lang:'zh-CN',
   production: process.env.NODE_ENV === 'production' && process.env.VUE_APP_PREVIEW !== 'true'
 }

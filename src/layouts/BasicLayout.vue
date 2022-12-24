@@ -183,11 +183,6 @@ export default defineComponent({
         loading.value = false;
       }, 1000);
     }
-    function handerThemeColor() {
-      // changeTheme({
-      //   primaryColor: settings.value.theme.primaryColor,
-      // });
-    }
 
     onMounted(() => {
       setTimeout(() => {

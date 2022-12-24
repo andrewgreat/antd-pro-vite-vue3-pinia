@@ -5,16 +5,47 @@ import storage from "store";
 console.log("main.ts...", "i18n");
 
 // default lang
-import zhCN from "./lang/zhCN";
-import enUS from "./lang/enUS";
-export const defaultLang = storage.get("lang") || "zhCN";
+import zhCN from "./lang/zh-CN";
+import enUS from "./lang/en-US";
+import zhTW from "./lang/zh-TW";
+
+function getStandLang(localLang: string) {
+  let langRet = "zh-CN";
+  const localLangs = [
+    {
+      key: "zh-CN",
+      tip: "简体中文",
+      langs: ["zh-CN", "zhCN", "zh-cn", "zh", "zhcn"],
+    },
+    {
+      key: "en-US",
+      tip: "English",
+      langs: ["en-US", "enUS", "en-us", "en", "enus"],
+    },
+    {
+      key: "zh-TW",
+      tip: "English",
+      langs: ["zh-TW", "zhTW", "zh-tw", "zhtw"],
+    },
+  ];
+  localLangs.some(
+    (item) =>
+      item.langs.some((lang) => lang === localLang) && (langRet = item.key)
+  );
+  return langRet;
+}
+
+export const defaultLang = getStandLang(storage.get("lang") || "zh-CN");
 
 const messages = {
-  zhCN: {
+  ["zh-CN"]: {
     ...zhCN,
   },
-  enUS: {
+  ["en-US"]: {
     ...enUS,
+  },
+  ["zh-TW"]: {
+    ...zhTW,
   },
 };
 
@@ -22,7 +53,8 @@ let i18n;
 
 const loadedLanguages = [defaultLang];
 
-export function setI18nLanguage(lang) {
+export function setI18nLanguage(localLang) {
+  const lang = getStandLang(localLang);
   if (i18n.mode === "legacy") {
     i18n.global.locale = lang;
   } else {
@@ -34,7 +66,8 @@ export function setI18nLanguage(lang) {
   return lang;
 }
 
-export function loadLanguageAsync(lang = defaultLang) {
+export function loadLanguageAsync(localLang = defaultLang) {
+  const lang = getStandLang(localLang);
   return new Promise((resolve) => {
     // 缓存语言设置
     storage.set("lang", lang);
@@ -72,7 +105,8 @@ export function t(key) {
   return i18n.global.t(`${key}`);
 }
 
-export function getAntLocale(lang) {
+export function getAntLocale(localLang) {
+  const lang = getStandLang(localLang);
   return i18n.global.getLocaleMessage(lang).antLocale;
 }
 

@@ -60,8 +60,6 @@ export default defineComponent({
         return renderItem(o, o.key)
       })
 
-      console.log(childrenItems);
-
       return (
         <a-menu-item-group key={item.key} >
           {{
