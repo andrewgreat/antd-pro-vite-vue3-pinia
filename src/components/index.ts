@@ -21,7 +21,7 @@ import ATree from "@/components/Tree/Tree";
 import Trend from "@/components/Trend/Trend.vue";
 import STable from "@/components/Table";
 import MultiTab from "@/components/MultiTab";
-// import IconSelector from '@/components/IconSelector'
+import IconSelector from "@/components/IconSelector";
 import TagSelect from "@/components/TagSelect/index";
 import StandardFormRow from "@/components/StandardFormRow/index";
 import ArticleListContent from "@/components/ArticleListContent";
@@ -49,7 +49,7 @@ export {
   ATree,
   STable,
   MultiTab,
-  // IconSelector,
+  IconSelector,
   TagSelect,
   StandardFormRow,
   ArticleListContent,

@@ -1,7 +1,7 @@
 // @ts-nocheck
-import {defineComponent, reactive, watchEffect, unref} from 'vue'
-import {useRoute, useRouter} from 'vue-router';
-import {tableProps} from 'ant-design-vue/es/table/Table'
+import { defineComponent, reactive, watchEffect, unref } from 'vue'
+import { useRoute, useRouter } from 'vue-router';
+import { tableProps } from 'ant-design-vue/es/table/Table'
 import get from 'lodash.get'
 
 export default defineComponent({
@@ -52,7 +52,7 @@ export default defineComponent({
     },
     showPagination: {
       // @ts-ignore
-      type: [String,Boolean],
+      type: [String, Boolean],
       default: 'auto'
     },
     /**
@@ -69,16 +69,16 @@ export default defineComponent({
       default: false
     }
   }),
-  setup (props,{slots, emit, expose }) {
+  setup(props, { slots, emit, expose }) {
     const router = useRouter()
     const route = useRoute()
     const tableData = {
-       needTotalList: [] as Object[],
-       selectedRows:  [],
-       selectedRowKeys:[],
-       localLoading:false,
-       localDataSource: [] as Object[],
-       localPagination: Object.assign({}, props.pagination) as Object
+      needTotalList: [] as Object[],
+      selectedRows: [],
+      selectedRowKeys: [],
+      localLoading: false,
+      localDataSource: [] as Object[],
+      localPagination: Object.assign({}, props.pagination) as Object
     }
     const _this = reactive(Object.assign({}, props, tableData))
 
@@ -91,24 +91,23 @@ export default defineComponent({
     const loadData = (pagination?, filters?, sorter?) => {
       _this.localLoading = true
       const parameter = Object.assign({
-          pageNo: (pagination && pagination.current) ||
-            _this.showPagination && _this.localPagination.current || _this.pageNum,
-          pageSize: (pagination && pagination.pageSize) ||
-            _this.showPagination && _this.localPagination.pageSize || _this.pageSize
-        },
+        pageNo: (pagination && pagination.current) ||
+          _this.showPagination && _this.localPagination.current || _this.pageNum,
+        pageSize: (pagination && pagination.pageSize) ||
+          _this.showPagination && _this.localPagination.pageSize || _this.pageSize
+      },
         (sorter && sorter.field && {
           sortField: sorter.field
         }) || {},
         (sorter && sorter.order && {
           sortOrder: sorter.order
         }) || {}, {
-          ...filters
-        }
+        ...filters
+      }
       )
-      // @ts-ignore
+
       const result = _this.data(parameter)
       // 对接自己的通用数据接口需要修改下方代码中的 r.pageNo, r.totalCount, r.data
-      // eslint-disable-next-line
       if ((typeof result === 'object' || typeof result === 'function') && typeof result.then === 'function') {
         result.then(r => {
           _this.localPagination = _this.showPagination && Object.assign({}, _this.localPagination, {
@@ -119,7 +118,6 @@ export default defineComponent({
               _this.localPagination.pageSize
           }) || false
           // 为防止删除数据后导致页面当前页面数据长度为 0 ,自动翻页到上一页
-          // @ts-ignore
           if (r.data.length === 0 && _this.showPagination && _this.localPagination.current > 1) {
             // @ts-ignore
             _this.localPagination.current--
@@ -131,7 +129,6 @@ export default defineComponent({
           // 当情况满足时，表示数据不满足分页大小，关闭 table 分页功能
           try {
             if ((['auto', true].includes(_this.showPagination) && r.totalCount <= (r.pageNo * _this.localPagination.pageSize))) {
-              // @ts-ignore
               _this.localPagination.hideOnSinglePage = true
             }
           } catch (e) {
@@ -143,7 +140,7 @@ export default defineComponent({
       }
     }
 
-    function initTotalList (columns):Object[] {
+    function initTotalList(columns): Object[] {
       const totalList = [] as Object[]
       columns && columns instanceof Array && columns.forEach(column => {
         if (column.needTotal) {
@@ -182,7 +179,7 @@ export default defineComponent({
      * @param bool
      */
     // @ts-ignore
-    const refresh = (bool=false) => {
+    const refresh = (bool = false) => {
       bool && (_this.localPagination = Object.assign({}, {
         current: 1, pageSize: _this.pageSize
       }))
@@ -223,8 +220,8 @@ export default defineComponent({
         return (<>
           <span style="margin-right: 12px">已选择: <a style="font-weight: 600">{_this.selectedRows.length}</a></span>
           <span style="margin-right: 12px">
-          {item.title}总计 <a style="font-weight: 600">{!item.customRender ? item.total : item.customRender(item.total)}</a>
-        </span>
+            {item.title}总计 <a style="font-weight: 600">{!item.customRender ? item.total : item.customRender(item.total)}</a>
+          </span>
         </>)
       })
 
@@ -237,7 +234,7 @@ export default defineComponent({
 
       // 绘制 alert 组件
       return (
-        <a-alert show-icon  message={needTotalItems} style="margin-bottom: 16px">
+        <a-alert show-icon message={needTotalItems} style="margin-bottom: 16px">
           {clearItem}
         </a-alert>
       )
@@ -255,7 +252,7 @@ export default defineComponent({
     _this.needTotalList = initTotalList(_this.columns)
     loadData()
 
-    watchEffect(()=>{
+    watchEffect(() => {
       //localPagination.current
       _this.pageURI && router.push({
         ...route,
@@ -286,12 +283,12 @@ export default defineComponent({
       })
     })
 
-    function render () {
+    function render() {
       const renderProps = [] as Object[]
       const localKeys = Object.keys(tableData)
       // @ts-ignore
       const showAlert = (typeof _this.alert === 'object' && _this.alert !== null && _this.alert.show) && typeof _this.rowSelection.selectedRowKeys !== 'undefined' || _this.alert
-      const tpros=tableProps()
+      const tpros = tableProps()
       Object.keys(tpros).forEach(k => {
         const localKey = `local${k.substring(0, 1).toUpperCase()}${k.substring(1)}`
         if (localKeys.includes(localKey)) {
@@ -322,34 +319,23 @@ export default defineComponent({
         return renderProps[k]
       })
 
-      const renderSlot=(column,record,text,index)=>{
-        if (column.scopedSlots?.customRender){
-          return slots.suffix && slots.suffix({column: column, record: record, text: text, index: index})
-        }
-        return column.customRender ? column.customRender(text) : text
-      }
-
-       const table = (
+      const table = (
         <a-table
-          { ...renderProps }
-          v-slots={{
-            bodyCell: ({column, record, index, text}) =><>{ renderSlot(column,record,text,index) }</>
-          }}
-           onChange={loadData}
-           onExpand={ (expanded, record) => { emit('expand', expanded, record) } }
+          {...renderProps}
+          v-slots={slots}
+          onChange={loadData}
+          onExpand={(expanded, record) => { emit('expand', expanded, record) }}
         >
-
         </a-table>
       )
-
       return (
         <div class="table-wrapper">
-          { showAlert ? renderAlert() : null }
-          { table }
+          {showAlert ? renderAlert() : null}
+          {table}
         </div>
       )
     }
 
-    return ()=>render()
+    return () => render()
   }
 })

@@ -24,7 +24,7 @@
             onChange: onSelectChange,
           }"
         >
-          <template v-slot:suffix="{ column, record, index, text }">
+          <template #bodyCell="{ column, record, index, text }">
             <span v-if="column.title === '#'">{{ index + 1 }}</span>
             <a-badge
               v-else-if="column.dataIndex === 'status'"

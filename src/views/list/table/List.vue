@@ -25,7 +25,7 @@
             <a-col :md="8" :sm="24">
               <a-form-item label="调用次数">
                 <a-input-number
-                v-model:value="queryParam.callNo"
+                  v-model:value="queryParam.callNo"
                   style="width: 100%"
                 />
               </a-form-item>
@@ -33,7 +33,7 @@
             <a-col :md="8" :sm="24">
               <a-form-item label="更新日期">
                 <a-date-picker
-                v-model:value="queryParam.date"
+                  v-model:value="queryParam.date"
                   style="width: 100%"
                   placeholder="请输入更新日期"
                 />
@@ -42,7 +42,7 @@
             <a-col :md="8" :sm="24">
               <a-form-item label="使用状态">
                 <a-select
-                v-model:value="queryParam.useStatus"
+                  v-model:value="queryParam.useStatus"
                   placeholder="请选择"
                   default-value="0"
                 >
@@ -69,8 +69,12 @@
                 (advanced && { float: 'right', overflow: 'hidden' }) || {}
               "
             >
-              <a-button type="primary" @click="table?.refresh(true)">查询</a-button>
-              <a-button style="margin-left: 8px" @click="resetQueryParam">重置</a-button>
+              <a-button type="primary" @click="table?.refresh(true)"
+                >查询</a-button
+              >
+              <a-button style="margin-left: 8px" @click="resetQueryParam"
+                >重置</a-button
+              >
               <a @click="toggleAdvanced" style="margin-left: 8px">
                 {{ advanced ? "收起" : "展开" }}
                 <a-icon :type="advanced ? 'up' : 'down'" />
@@ -82,7 +86,9 @@
     </div>
     <br />
     <div class="table-operator">
-      <a-button type="primary" @click="handleAdd"><plus-outlined />新建</a-button>
+      <a-button type="primary" @click="handleAdd"
+        ><plus-outlined />新建</a-button
+      >
       <a-button type="dashed" @click="tableOption"
         >{{ (optionAlertShow && "关闭") || "开启" }} alert</a-button
       >
@@ -109,7 +115,7 @@
       :alert="options.alert"
       :rowSelection="options.rowSelection"
     >
-      <template v-slot:suffix="{ column, record, index, text }">
+      <template #bodyCell="{ column, record, index, text }">
         <span v-if="column.title === '#'">{{ index + 1 }}</span>
         <a-badge
           v-else-if="column.dataIndex === 'status'"
@@ -124,8 +130,12 @@
             <template #overlay>
               <a-menu>
                 <a-menu-item><a href="javascript:;">详情</a></a-menu-item>
-                <a-menu-item v-if="$auth('table.disable')"><a href="javascript:;">禁用</a></a-menu-item>
-                <a-menu-item v-if="$auth('table.delete')"><a href="javascript:;">删除</a></a-menu-item>
+                <a-menu-item v-if="$auth('table.disable')">
+                  <a href="javascript:;">禁用</a>
+                </a-menu-item>
+                <a-menu-item v-if="$auth('table.delete')">
+                  <a href="javascript:;">删除</a>
+                </a-menu-item>
               </a-menu>
             </template>
           </a-dropdown>
@@ -167,7 +177,7 @@ export default defineComponent({
       callNo: undefined,
       useStatus: undefined,
     });
- 
+
     // 表头
     const columns = [
       {
@@ -246,11 +256,11 @@ export default defineComponent({
     };
 
     const resetQueryParam = () => {
-      queryParam.id=undefined
-      queryParam.status=undefined
-      queryParam.date=undefined
-      queryParam.callNo=undefined
-      queryParam.useStatus=undefined
+      queryParam.id = undefined;
+      queryParam.status = undefined;
+      queryParam.date = undefined;
+      queryParam.callNo = undefined;
+      queryParam.useStatus = undefined;
     };
 
     const onSelectChange = function (rowKeys, rows) {

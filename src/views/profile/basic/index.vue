@@ -31,8 +31,10 @@
         row-key="key"
         :columns="scheduleColumns"
         :data="loadScheduleData">
-        <template v-slot:suffix="{ text }">
-          <a-badge :status="text" :text="statusFilter(text)"/>
+        <template #bodyCell="{ column, text }">
+          <template v-if="column.key === 'status'">
+            <a-badge :status="text" :text="statusFilter(text)"/>
+          </template>
         </template>
       </s-table>
     </a-card>
@@ -50,7 +52,7 @@ export default defineComponent({
   },
   setup(){
     const route = useRoute()
-    const goodsColumns =reactive( [
+    const goodsColumns = [
       {
         title: '商品编号',
         dataIndex: 'id',
@@ -84,7 +86,7 @@ export default defineComponent({
         key: 'amount',
         align: 'right'
       }
-    ])
+    ]
       // 加载数据方法 必须为 Promise 对象
     const loadGoodsData = () => {
       return new Promise(resolve => {

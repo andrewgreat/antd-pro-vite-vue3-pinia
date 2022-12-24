@@ -89,7 +89,7 @@
         :rowSelection="rowSelection"
         showPagination="auto"
       >
-        <template v-slot:suffix="{column, record, index, text}">
+        <template #bodyCell="{column, record, index, text}">
           <span v-if="column.title==='#'" >{{ index + 1 }}</span>
           <a-badge v-else-if="column.dataIndex==='status'" :status="statusTypeFilter(text)" :text="statusFilter(text)" />
           <span v-else-if="column.dataIndex==='action'">

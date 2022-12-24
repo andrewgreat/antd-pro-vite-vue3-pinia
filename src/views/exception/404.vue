@@ -29,6 +29,5 @@ export default defineComponent({
 });
 </script>
 
-<style lang="less">
-@import "ant-design-vue/es/style/themes/default.less";
+<style lang="less" scoped>
 </style>
