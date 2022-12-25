@@ -217,10 +217,11 @@ export default defineComponent({
     const renderAlert = () => {
       // 绘制统计列数据
       const needTotalItems = _this.needTotalList.map((item) => {
+
         return (<>
           <span style="margin-right: 12px">已选择: <a style="font-weight: 600">{_this.selectedRows.length}</a></span>
           <span style="margin-right: 12px">
-            {item.title}总计 <a style="font-weight: 600">{!item.customRender ? item.total : item.customRender(item.total)}</a>
+            {item.title}总计{' '} <a style="font-weight: 600">{!item.customRender ? item.total : item.customRender({'text':item.total})}</a>
           </span>
         </>)
       })

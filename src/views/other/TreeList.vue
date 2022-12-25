@@ -94,7 +94,7 @@ export default defineComponent({
         dataIndex: "callNo",
         sorter: true,
         needTotal: true,
-        customRender: (text) => text + " 次",
+        customRender: ({text}) => text + " 次",
       },
       {
         title: "状态",

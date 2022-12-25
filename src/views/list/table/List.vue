@@ -116,30 +116,35 @@
       :rowSelection="options.rowSelection"
     >
       <template #bodyCell="{ column, record, index, text }">
-        <span v-if="column.title === '#'">{{ index + 1 }}</span>
-        <a-badge
-          v-else-if="column.dataIndex === 'status'"
-          :status="statusTypeFilter(text)"
-          :text="statusFilter(text)"
-        />
-        <span v-else-if="column.dataIndex === 'action'">
-          <a @click="handleEdit(record)">编辑</a>
-          <a-divider type="vertical" />
-          <a-dropdown>
-            <a class="ant-dropdown-link">更多<down-outlined /></a>
-            <template #overlay>
-              <a-menu>
-                <a-menu-item><a href="javascript:;">详情</a></a-menu-item>
-                <a-menu-item v-if="$auth('table.disable')">
-                  <a href="javascript:;">禁用</a>
-                </a-menu-item>
-                <a-menu-item v-if="$auth('table.delete')">
-                  <a href="javascript:;">删除</a>
-                </a-menu-item>
-              </a-menu>
-            </template>
-          </a-dropdown>
-        </span>
+        <template v-if="column.title === '#'">
+          <span>{{ index + 1 }}</span>
+        </template>
+        <template v-else-if="column.dataIndex === 'status'">
+          <a-badge
+            :status="statusTypeFilter(text)"
+            :text="statusFilter(text)"
+          />
+        </template>
+        <template v-else-if="column.dataIndex === 'action'">
+          <span>
+            <a @click="handleEdit(record)">编辑</a>
+            <a-divider type="vertical" />
+            <a-dropdown>
+              <a class="ant-dropdown-link">更多<down-outlined /></a>
+              <template #overlay>
+                <a-menu>
+                  <a-menu-item><a href="javascript:;">详情</a></a-menu-item>
+                  <a-menu-item v-if="$auth('table.disable')">
+                    <a href="javascript:;">禁用</a>
+                  </a-menu-item>
+                  <a-menu-item v-if="$auth('table.delete')">
+                    <a href="javascript:;">删除</a>
+                  </a-menu-item>
+                </a-menu>
+              </template>
+            </a-dropdown>
+          </span>
+        </template>
       </template>
     </s-table>
   </div>
@@ -198,7 +203,7 @@ export default defineComponent({
         dataIndex: "callNo",
         sorter: true,
         needTotal: true,
-        customRender: (text) => text + " 次",
+        customRender: ({text}) => text + " 次",
       },
       {
         title: "状态",
