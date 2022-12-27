@@ -1,6 +1,6 @@
 <template>
   <!-- 两步验证 -->
-  <a-modal centered v-model="visible" :maskClosable="false">
+  <a-modal centered v-model:visible="visible" :maskClosable="false">
     <div slot="title" :style="{ textAlign: 'center' }">两步验证</div>
     <template slot="footer">
       <div :style="{ textAlign: 'center' }">

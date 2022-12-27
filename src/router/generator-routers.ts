@@ -129,7 +129,7 @@ export const generator = (routerMap, parent?) => {
       // component: constantRouterComponents[item.component || item.key],
       // 该路由对应页面的 组件 :方案2 (动态加载)
       // @vite-ignore
-      component: constantRouterComponents[item.component || item.key] || (() => import(`../views/${item.component}.vue`)),
+      component: constantRouterComponents[item.component || item.key] || (() => import(`../views${item.component}.vue`)),
 
       // meta: 页面标题, 菜单图标, 页面权限(供指令权限用，可去掉)
       meta: {
