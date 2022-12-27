@@ -58,10 +58,7 @@
           <a @click="handleEdit(record)">编辑</a>
           <a-divider type="vertical" />
           <a-dropdown>
-            <a class="ant-dropdown-link">
-              更多
-              <DownOutlined />
-            </a>
+            <a class="ant-dropdown-link">更多<DownOutlined /></a>
             <template #overlay>
               <a-menu>
                 <a-menu-item>

@@ -35,7 +35,7 @@ export function getServiceList (parameter) {
   })
 }
 
-export function getPermissions (parameter) {
+export function getPermissions (parameter={}) {
   return request({
     url: api.permissionNoPager,
     method: 'get',
