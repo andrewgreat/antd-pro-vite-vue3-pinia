@@ -117,7 +117,7 @@ export default defineComponent({
 
     const { t } = useI18n();
     const { menuData } = getMenuData(clearMenuItem(router.getRoutes()));
-    // console.log('BasicLayout..',menuData)
+    console.log('BasicLayout..',menuData)
     const baseState = reactive<Omit<RouteContextProps, "menuData">>({
       selectedKeys: [],
       openKeys: [],

@@ -142,7 +142,7 @@ export const generator = (routerMap, parent?) => {
     }
     // 是否设置了隐藏菜单
     if (show === false) {
-      currentRouter.hidden = true
+      currentRouter.hideInMenu = true
     }
     // 是否设置了隐藏子菜单
     if (hideChildren) {
