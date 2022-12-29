@@ -14,7 +14,7 @@
 
 ## 简介
 
-antd pro vite vue3是由Ant Design Vue Pro从vue2迁移到vue3,最可能的做到原有功能不变，仅从技术上做升级。用了最新的`vue3`,`vite2`,`vue-router`,`TypeScript`,`pinia`等主流技术开发，开箱即用的中后台前端解决方案，也可用于学习参考。
+antd pro vite vue3是把Ant Design Vue Pro用vue3进行了重构,基本功能不变。用了最新的`vue3`,`vite2`,`vue-router`,`TypeScript`,`pinia`等主流技术开发，开箱即用的中后台前端解决方案，也可用于学习参考。
 
 ## 特性
 

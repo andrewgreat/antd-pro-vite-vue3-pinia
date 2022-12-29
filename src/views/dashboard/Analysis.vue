@@ -267,12 +267,11 @@
                 bordered
               >
                 <template v-slot:bodyCell="{ column, text, record }">
-                  <trend
-                    v-if="column.dataIndex === 'range'"
-                    :flag="record.status === 0 ? 'up' : 'down'"
-                  >
-                    <template #term>{{ text }}%</template>
-                  </trend>
+                  <template  v-if="column.dataIndex === 'range'">
+                    <trend :flag="record.status === 0 ? 'up' : 'down'">
+                      <template #term>{{ text }}%</template>
+                    </trend>
+                  </template>
                 </template>
               </a-table>
             </div>

@@ -131,7 +131,7 @@ export default defineComponent({
     onMounted(() => { // 需要获取到element,所以是onMounted的Hook
       // @ts-ignore
       // 基于准备好的dom，初始化echarts实例
-      userChart = echarts.init(document.getElementById("chartDom"));
+      userChart = echarts.init(document.getElementById("chartDom"), null, { renderer: 'svg' });
       // 绘制图表
       userChart.setOption(chartOption);
       window.addEventListener('resize', elResize)

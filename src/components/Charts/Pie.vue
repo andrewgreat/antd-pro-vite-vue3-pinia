@@ -112,7 +112,7 @@ export default defineComponent({
 
     onMounted(() => {
       // @ts-ignore
-      userChart = echarts.init(document.getElementById(domId));
+      userChart = echarts.init(document.getElementById(domId), null, { renderer: 'svg' });
       userChart.setOption(chartOption)
       window.addEventListener('resize', elResize)
     })

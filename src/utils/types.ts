@@ -39,7 +39,7 @@ export interface CustemRouter  {
   meta?: RouterMeta
   hideChildrenInMenu?: boolean
   children?: CustemRouter[] | undefined
-  hidden?: boolean
+  hideInMenu?: boolean
   // 动态添加
   sort?: number
 }

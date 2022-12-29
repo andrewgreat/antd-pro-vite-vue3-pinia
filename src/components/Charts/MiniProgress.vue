@@ -5,7 +5,7 @@
       <span :style="{ backgroundColor: color }"/>
     </div>
     <div class="progress-wrapper">
-      <div class="progress" :style="{ backgroundColor: color, width: percentage + '%', height: height }"></div>
+      <div class="progress" :style="{  width: percentage + '%', height: height }"></div>
     </div>
   </div>
 </template>

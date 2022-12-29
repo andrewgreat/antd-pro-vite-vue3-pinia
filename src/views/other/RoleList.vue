@@ -27,7 +27,7 @@
       </a-form>
     </div>
 
-    <s-table ref="table" size="default" :columns="columns" :data="loadData">
+    <s-table ref="table" rowKey="id" size="default" :columns="columns" :data="loadData">
         <template #expandedRowRender="{record}" style="margin: 0">
         <a-row :gutter="24" :style="{ marginBottom: '12px' }">
           <a-col :span="12" v-for="(role, index) in record.permissions" :key="index" :style="{ marginBottom: '12px' }">
