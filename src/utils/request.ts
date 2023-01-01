@@ -108,7 +108,7 @@ const installer = {
   },
 };
 
-const VueAxios = {
+export const VueAxios = {
   vm: {},
   install(app: App) {
     app.use(installer, request);
@@ -116,4 +116,3 @@ const VueAxios = {
 };
 
 export default request;
-export { VueAxios, request as axios };
