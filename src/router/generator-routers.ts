@@ -65,7 +65,7 @@ const constantRouterComponents = {
 const notFoundRouter: CustemRouter = {
   path: "/:pathMatch(.*)*",
   redirect: '/404',
-  hidden: true
+  hideInMenu: true
 }
 
 // 根级菜单

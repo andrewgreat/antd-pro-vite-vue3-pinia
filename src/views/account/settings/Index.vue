@@ -12,27 +12,27 @@
             @openChange="onOpenChange"
           >
             <a-menu-item key="/account/settings/basic">
-              <router-link :to="{ name: 'BasicSettings' }">
+              <router-link to= '/account/settings/basic'>
                 {{ $t('account.settings.menuMap.basic') }}
               </router-link>
             </a-menu-item>
             <a-menu-item key="/account/settings/security">
-              <router-link :to="{ name: 'SecuritySettings' }">
+              <router-link to="/account/settings/security">
                 {{ $t('account.settings.menuMap.security') }}
               </router-link>
             </a-menu-item>
             <a-menu-item key="/account/settings/custom">
-              <router-link :to="{ name: 'CustomSettings' }">
+              <router-link to="/account/settings/custom">
                 {{ $t('account.settings.menuMap.custom') }}
               </router-link>
             </a-menu-item>
             <a-menu-item key="/account/settings/binding">
-              <router-link :to="{ name: 'BindingSettings' }">
+              <router-link to="/account/settings/binding">
                 {{ $t('account.settings.menuMap.binding') }}
               </router-link>
             </a-menu-item>
             <a-menu-item key="/account/settings/notification">
-              <router-link :to="{ name: 'NotificationSettings' }">
+              <router-link to="/account/settings/notification">
                 {{ $t('account.settings.menuMap.notification') }}
               </router-link>
             </a-menu-item>

@@ -811,7 +811,7 @@ const userNav = options => {
       component: 'AccountSettings'
     },
     {
-      name: 'BasicSettings',
+      // name: 'BasicSettings',
       path: '/account/settings/basic',
       parentId: 10030,
       id: 10031,
@@ -822,7 +822,7 @@ const userNav = options => {
       component: 'BasicSettings'
     },
     {
-      name: 'SecuritySettings',
+      // name: 'SecuritySettings',
       path: '/account/settings/security',
       parentId: 10030,
       id: 10032,
@@ -833,7 +833,7 @@ const userNav = options => {
       component: 'SecuritySettings'
     },
     {
-      name: 'CustomSettings',
+      // name: 'CustomSettings',
       path: '/account/settings/custom',
       parentId: 10030,
       id: 10033,
@@ -844,7 +844,7 @@ const userNav = options => {
       component: 'CustomSettings'
     },
     {
-      name: 'BindingSettings',
+      // name: 'BindingSettings',
       path: '/account/settings/binding',
       parentId: 10030,
       id: 10034,
@@ -855,7 +855,7 @@ const userNav = options => {
       component: 'BindingSettings'
     },
     {
-      name: 'NotificationSettings',
+      // name: 'NotificationSettings',
       path: '/account/settings/notification',
       parentId: 10030,
       id: 10035,

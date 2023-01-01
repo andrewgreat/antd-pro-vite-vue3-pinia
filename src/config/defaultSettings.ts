@@ -28,5 +28,5 @@ export default {
   pwa: false,
   iconfontUrl: '',
   lang:'zh-CN',
-  production: process.env.NODE_ENV === 'production' && process.env.VUE_APP_PREVIEW !== 'true'
+  production: import.meta.env.VITE_NODE_ENV === 'production' && import.meta.env.VUE_APP_PREVIEW !== 'true'
 }

@@ -111,6 +111,6 @@ export function lazyApp(app: App<Element>) {
   app.use(Authorize);
   app.use(VueCropper);
 
-  process.env.NODE_ENV !== "production" &&
-    console.warn("[antd-pro] NOTICE: Antd use lazy-load.");
+  import.meta.env.VITE_NODE_ENV !== "production" &&
+    console.warn("[antd] NOTICE: Antd use lazy-load.");
 }
