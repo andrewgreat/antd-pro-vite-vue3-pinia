@@ -1,14 +1,14 @@
 <template>
-  <a-config-provider :locale="antLocale">
+  <a-config-provider prefixCls="ant" :locale="antLocale">
     <router-view />
   </a-config-provider>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted } from "vue";
+import { computed, defineComponent, onMounted, reactive } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
-import { ConfigProvider } from "ant-design-vue";
+import { ConfigProvider, Locale } from "ant-design-vue";
 import { useAppStore } from "@/store/modules/app";
 import { domTitle, setDocumentTitle } from "@/utils/domUtil";
 export default defineComponent({
@@ -24,7 +24,7 @@ export default defineComponent({
       // @ts-ignore
       title && setDocumentTitle(`${t(title)}-${domTitle}`);
 
-      return getLocaleMessage(appStore.lang).antLocale;
+      return <Locale>getLocaleMessage(appStore.lang).antLocale;
     });
     const getPopupContainer = (el: Element, dialogContext: any) => {
       if (dialogContext) {
@@ -32,9 +32,22 @@ export default defineComponent({
       }
       return document.body;
     };
+    // onMounted(() => {
+    //   ConfigProvider.config({
+    //     theme: { primaryColor: appStore.theme.primaryColor },
+    //   });
+    // });
+    const colorState = reactive({
+      primaryColor: appStore.theme.primaryColor,
+      errorColor: "#ff4d4f",
+      warningColor: "#faad14",
+      successColor: "#52c41a",
+      infoColor: "#FA541C",
+    });
     onMounted(() => {
       ConfigProvider.config({
-        theme: { primaryColor: appStore.theme.primaryColor },
+        prefixCls: "ant",
+        theme: colorState,
       });
     });
     return {
@@ -46,5 +59,5 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-@import "./style/index.less";
+// @import "./style/index.less";
 </style>

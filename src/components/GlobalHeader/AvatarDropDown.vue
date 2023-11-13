@@ -27,7 +27,7 @@
       <a-avatar
         shape="square"
         size="small"
-        src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"
+        src="/src/assets/images/avatar2.jpg"
         class="antd-pro-global-header-index-avatar"
       >
       </a-avatar>

@@ -298,7 +298,7 @@ export default [
       "rest-outlined",
       "security-scan-outlined",
       "insurance-outlined",
-      "interation-outlined",
+      "interaction-outlined",
       "safety-certificate-outlined",
       "project-outlined",
       "thunderbolt-outlined",

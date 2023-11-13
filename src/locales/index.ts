@@ -24,7 +24,7 @@ function getStandLang(localLang: string) {
     },
     {
       key: "zh-TW",
-      tip: "English",
+      tip: "繁體中文",
       langs: ["zh-TW", "zhTW", "zh-tw", "zhtw"],
     },
   ];

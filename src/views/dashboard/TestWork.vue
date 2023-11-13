@@ -156,7 +156,7 @@
           :data="loadData"
           :alert="false"
           :rowSelection="{
-            selectedRowKeys: selectedRowKeys.value,
+            selectedRowKeys: selectedRowKeys,
           }"
         >
         <template #headerCell="{ column }">

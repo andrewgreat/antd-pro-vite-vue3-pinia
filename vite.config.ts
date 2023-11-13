@@ -3,7 +3,8 @@ import { UserConfigExport, ConfigEnv } from "vite";
 import path from "path";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
-import viteSvgIcons from "vite-plugin-svg-icons";
+import {createSvgIconsPlugin} from "vite-plugin-svg-icons";
+import Less2CssVariablePlugin from "antd-less-to-css-variable";
 import { getThemeVariables } from "ant-design-vue/dist/theme";
 import { viteMockServe } from "vite-plugin-mock";
 import Components from "unplugin-vue-components/vite";
@@ -50,6 +51,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
         less: {
           // DO NOT REMOVE THIS LINE
           javascriptEnabled: true,
+          plugins: [new Less2CssVariablePlugin()],
           modifyVars: getThemeVariables(),
           // modifyVars: {
           //   hack: `true; @import 'ant-design-vue/dist/antd.less'`, // antd.dark.less
@@ -61,14 +63,14 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
     plugins: [
       vue(),
       vueJsx(),
-      viteSvgIcons({
+      createSvgIconsPlugin({
         // 指定需要缓存的图标文件夹
         iconDirs: [resolve(__dirname, "src/assets/icons")],
         // 指定symbolId格式
         symbolId: "icon-[name]",
       }),
       Components({
-        resolvers: [AntDesignVueResolver({ importStyle: "less"})],
+        resolvers: [AntDesignVueResolver({ importStyle: false})],
       }),
       viteMockServe({
         mockPath: "./mock",

@@ -10,10 +10,6 @@
     :collapsedButtonRender="false"
     :locale="t"
   >
-    <template #collapsedButtonRender="collapsed">
-      <HeartOutlined v-if="collapsed" />
-      <SmileOutlined v-else />
-    </template>
     <template #menuHeaderRender>
       <a>
         <img src="/logo.svg" />
@@ -31,14 +27,14 @@
           <menu-fold-outlined v-else />
         </a-tooltip>
       </a>
-      <div
+      <a
         :style="{ display: 'inline', margin: '0 8px', fontSize: '20px' }"
         @click="onRefresh"
       >
         <a-tooltip title="刷新页面">
           <reload-outlined />
         </a-tooltip>
-      </div>
+      </a>
     </template>
     <!-- custom breadcrumb itemRender  -->
     <template #breadcrumbRender="{ route, params, routes }">
@@ -57,11 +53,13 @@
     <a-layout-content>
       <multi-tab v-if="isMultiTab"></multi-tab>
       <!-- content begin -->
-      <route-view v-slot="{ Component }" :keepAlive="true">
-        <transition name="MainFade" mode="out-in">
-          <component :is="Component" />
-        </transition>
-      </route-view>
+      <section>
+        <route-view v-if="showPage" v-slot="{ Component }" :keepAlive="true">
+          <transition name="MainFade" mode="out-in">
+            <component :is="Component" />
+          </transition>
+        </route-view>
+      </section>
       <!-- content end -->
     </a-layout-content>
 
@@ -145,12 +143,10 @@ export default defineComponent({
       hideCopyButton: false,
     });
 
-    const showRouter = ref(true);
+    const showPage = ref(true);
     const onRefresh = () => {
-      // emitter.all.clear()
-      window.location.reload();
-      showRouter.value = false;
-      nextTick(() => (showRouter.value = true));
+      showPage.value = false;
+      nextTick(() => (showPage.value = true));
     };
 
     const breadcrumb = computed(() =>
@@ -167,7 +163,7 @@ export default defineComponent({
       appStore.sideCollapsed = baseState.collapsed;
     };
     watchEffect(() => {
-      if (router.currentRoute) {
+      if (router.currentRoute.value) {
         const matched = router.currentRoute.value.matched.concat();
         baseState.selectedKeys = matched
           .filter((r) => r.name !== "index")
@@ -198,6 +194,7 @@ export default defineComponent({
       settings,
       loading,
       breadcrumb,
+      showPage,
       onRefresh,
       handlePageLoadingClick,
       handleCollapsed,

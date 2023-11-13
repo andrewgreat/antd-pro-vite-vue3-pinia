@@ -42,7 +42,7 @@
           <div class="account-settings-info-title">
             <span>{{ $t(route.meta.title) }}</span>
           </div>
-          <route-view></route-view>
+          <router-view></router-view>
         </div>
       </div>
     </a-card>

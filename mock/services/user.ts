@@ -876,7 +876,7 @@ const userNav = options => {
     },
     {
       path: '/other/icon-selector',
-      name: 'TestIconSelect',
+      name: 'iconSelect',
       parentId: 10200,
       id: 10202,
       component: '/other/IconSelectorView',

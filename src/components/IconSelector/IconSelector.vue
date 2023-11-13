@@ -9,7 +9,12 @@
             :class="{ active: selectedIcon == icon }"
             @click="handleSelectedIcon(icon)"
           >
-            <component :is="icon" :style="{ fontSize: '36px' }" />
+            <div :id="icon">
+              <a-tooltip>
+                <template #title> &lt;{{ icon }} /&gt;</template>
+                <component :is="icon" :style="{ fontSize: '36px' }" />
+              </a-tooltip>
+            </div>
           </li>
         </ul>
       </a-tab-pane>
@@ -30,32 +35,30 @@ export default defineComponent({
     },
     modelValue: {
       type: String,
+      default: "",
     },
   },
+  emits: ["update:modelValue"],
   setup(props, { emit }) {
     const selectedIcon = ref(props.modelValue);
     const currentTab = ref("directional");
 
     function handleSelectedIcon(icon) {
       selectedIcon.value = icon;
-      emit("change", icon);
+      emit("update:modelValue", icon);
     }
     function handleTabChange(activeKey) {
       currentTab.value = activeKey;
     }
     function autoSwitchTab() {
-      icons.some(
-        (item) =>
-          item.icons.some((icon) => icon == props.modelValue) &&
-          (currentTab.value = item.key)
-      );
+      icons.some((item) => item.icons.some((icon) => icon === props.modelValue) && (currentTab.value = item.key));
     }
 
     watch(
       () => props.modelValue,
       (newval) => {
-        selectedIcon.value = newval;
         autoSwitchTab();
+        selectedIcon.value = newval;
       }
     );
 
@@ -78,7 +81,7 @@ export default defineComponent({
 ul {
   list-style: none;
   padding: 0;
-  overflow-y: scroll;
+  overflow-x: hidden;
   height: 40vh;
 
   li {

@@ -50,7 +50,7 @@ import { VueAxios } from "@/utils/request";
 
 // ext library
 import VueCropper from "vue-cropper";
-import "vue-cropper/dist/index.css";
+import "vue-cropper/next/dist/index.css";
 import Dialog from "@/components/Dialog";
 import MultiTab from "@/components/MultiTab";
 import PageLoading from "@/components/PageLoading";

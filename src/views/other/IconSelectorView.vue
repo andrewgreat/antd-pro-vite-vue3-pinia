@@ -1,40 +1,33 @@
 <template>
   <a-card :body-style="{ padding: '24px 32px' }" :bordered="false">
-    <icon-selector v-model="currentSelectedIcon" @change="handleIconChange" />
+    <icon-selector v-model="currentSelectedIcon" @update:modelValue="handleIconChange" />
 
     <a-divider />
     <p>测试 IconSelector 组件 v-model 功能</p>
     <a-button @click="changeIcon('down-outlined')">改变 down-outlined</a-button>
     <a-divider type="vertical" />
-    <a-button @click="changeIcon('cloud-download-outlined')"
-      >改变 cloud-download-outlined</a-button
-    >
+    <a-button @click="changeIcon('read-outlined')">改变 read-outlined</a-button>
   </a-card>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script setup lang="ts" name="IconSelectorView">
+import { defineComponent, ref, nextTick } from "vue";
 import { message } from "ant-design-vue";
 import IconSelector from "@/components/IconSelector";
 
-export default defineComponent({
-  name: "IconSelectorView",
-  components: {
-    IconSelector,
-  },
-  setup() {
-    const currentSelectedIcon = ref("pause-circle-outlined");
-    function handleIconChange(icon) {
-      message.info(`选中图标<${icon} />`)
-    }
-    function changeIcon(type) {
-      currentSelectedIcon.value = type;
-    }
-    return {
-      currentSelectedIcon,
-      handleIconChange,
-      changeIcon,
-    };
-  },
-});
+const currentSelectedIcon = ref("pause-circle-outlined");
+
+const scrollTo = (elementId) => {
+  document.getElementById(elementId)?.scrollIntoView({ block: "center" });
+};
+
+function handleIconChange(icon) {
+  message.success(`选中图标<${icon} />`);
+}
+function changeIcon(icon) {
+  currentSelectedIcon.value = icon;
+  nextTick(() => {
+    scrollTo(icon);
+  });
+}
 </script>
